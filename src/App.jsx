@@ -1,10 +1,12 @@
-function App() {
+import React from 'react';
+import Profile from './pages/Profile';
 
+function App() {
   return (
-    <>
-      <h1>Runprepper</h1>
-    </>
-  )
+    <div>
+      <Profile />
+    </div>
+  );
 }
 
-export default App
+export default App;
