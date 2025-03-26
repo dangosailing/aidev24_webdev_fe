@@ -7,7 +7,7 @@ const Register = () => {
   const {
     register,
     handleSubmit,
-    formSrtate: { errors },
+    formState: { errors },
     reset,
   } = useForm();
   
