@@ -1,16 +1,19 @@
 import React from 'react'
 import { login } from '../services/userApi'
 import { useForm } from 'react-hook-form'
+import { useNavigate } from 'react-router-dom'
 
 const Login = () => {
   const {
     handleSubmit,
     register
   } = useForm();
+  
+  let navigate = useNavigate()
   const onSubmit = async (data) => {
     try {
       const response = await login(data)
-      console.log(response)
+      navigate('/profile')
     } catch (error) {
       console.error(error)
     }
