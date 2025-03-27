@@ -1,0 +1,33 @@
+.mood-experience {
+    margin-top: 24px;
+  }
+  
+  .mood-experience__label {
+    font-weight: bold;
+    margin-bottom: 8px;
+  }
+  
+  .mood-experience__options {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 16px;
+  }
+  
+  .mood-experience__button {
+    font-size: 24px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+  }
+  
+  .mood-experience__button:hover {
+    transform: scale(1.2);
+  }
+  
+  .mood-experience__suggestion {
+    background: #fff;
+    padding: 16px;
+    border-radius: 8px;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+  }

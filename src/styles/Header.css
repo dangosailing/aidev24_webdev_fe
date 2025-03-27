@@ -1,0 +1,35 @@
+.site-header {
+    background-color: #1e1e1e;
+    padding: 12px 24px;
+    color: white;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .site-header__container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  .site-header__title {
+    font-size: 24px;
+    font-weight: bold;
+  }
+  
+  .site-header__nav {
+    display: flex;
+    gap: 16px;
+  }
+  
+  .site-header__link {
+    color: white;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.2s ease;
+  }
+  
+  .site-header__link:hover {
+    color: #00bcd4;
+  }

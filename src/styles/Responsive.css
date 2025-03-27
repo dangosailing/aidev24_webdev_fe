@@ -1,0 +1,74 @@
+/* Base layout container */
+.container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 16px;
+  }
+  
+  /* Typography helpers */
+  .text-sm {
+    font-size: 14px;
+  }
+  
+  .text-md {
+    font-size: 16px;
+  }
+  
+  .text-lg {
+    font-size: 18px;
+  }
+  
+  .text-xl {
+    font-size: 22px;
+  }
+  
+  /* Flex utilities */
+  .flex {
+    display: flex;
+  }
+  
+  .flex-col {
+    flex-direction: column;
+  }
+  
+  .flex-row {
+    flex-direction: row;
+  }
+  
+  .items-center {
+    align-items: center;
+  }
+  
+  .justify-between {
+    justify-content: space-between;
+  }
+  
+  .gap-16 {
+    gap: 16px;
+  }
+  
+  /* Responsive behavior */
+  @media (min-width: 768px) {
+    .flex-lg-row {
+      flex-direction: row;
+    }
+  
+    .text-md {
+      font-size: 18px;
+    }
+  
+    .text-lg {
+      font-size: 20px;
+    }
+  }
+  
+  @media (min-width: 1024px) {
+    .text-xl {
+      font-size: 24px;
+    }
+  
+    .gap-lg-24 {
+      gap: 24px;
+    }
+  }
