@@ -1,8 +1,41 @@
 import React from 'react'
+import { login } from '../services/userApi'
+import { useForm } from 'react-hook-form'
+import { useNavigate } from 'react-router-dom'
 
 const Login = () => {
+  const {
+    handleSubmit,
+    register
+  } = useForm();
+  
+  let navigate = useNavigate()
+  const onSubmit = async (data) => {
+    try {
+      const response = await login(data)
+      navigate('/profile')
+    } catch (error) {
+      console.error(error)
+    }
+  }
+
   return (
-    <div>Login</div>
+    <div>
+      <h2>Login</h2>
+      <form onSubmit={handleSubmit(onSubmit)}>
+        <input
+          type="text"
+          {...register('username', { required: true })}
+          id="username-input"
+        />
+        <input
+          type="password"
+          {...register('password', { required: true })}
+          id="userpwd-input"
+        />
+        <button type="submit">Login</button>
+      </form>
+    </div>
   )
 }
 

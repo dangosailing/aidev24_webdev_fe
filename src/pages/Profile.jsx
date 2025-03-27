@@ -1,6 +1,11 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
+import Button from '../components/Button'
+
 
 const Profile = () => {
+  const [token, setToken] = useState('token')
+  const navigate = useNavigate()
   const user = {
     name: 'Dirk Diggler',
     role: 'Photographer',
@@ -15,8 +20,25 @@ const Profile = () => {
     ]
   };
 
+  const Logout = () => {
+    sessionStorage.removeItem('token')
+    navigate('/')
+  }
+
+  useEffect(() => {
+    const sessionToken = sessionStorage.getItem('token')
+    if (!sessionToken) {
+      navigate('/login')
+
+    } else {
+      setToken(sessionToken)
+    }
+  }, [navigate])
+
   return (
+    
     <>
+          <Button onClick={Logout} text={"Logout"}/>
       <div style={{
         width: '100vw',
         margin: '0',
