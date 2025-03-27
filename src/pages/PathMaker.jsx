@@ -1,13 +1,28 @@
-import { useState } from 'react';
+import { useState,useEffect } from 'react';
+import { useNavigate } from "react-router-dom";
 import { MapContainer, TileLayer, Marker, Popup, Polyline } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import GetUserPosition from '../components/GetUserPosition';
 
 
+
 const PathMaker = () => {
     const [position, setPosition] = useState(null);
     const [route, setRoute] = useState([]);
+    
+    const [token, setToken] = useState("");
   
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const sessionToken = sessionStorage.getItem("token");
+    if (!sessionToken) {
+      navigate("/login");
+    } else {
+      setToken(sessionToken);
+    }
+  }, [navigate]);
+
     return (
       <>
         <div className="map">
