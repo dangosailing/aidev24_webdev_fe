@@ -1,13 +1,9 @@
 import React, { useState } from 'react';
 import { newPath } from '../services/pathApi';
 
-
-const GetUserPosition = () => {
+const GetUserPosition = ({ onPositionUpdate, onRouteUpdate }) => {
   const [distanceKm, setDistanceKm] = useState(1);
-  const [coordinates, setCoordinates] = useState(null);
-  const [route, setRoute] = useState(null);
   const [loading, setLoading] = useState(false);
-
 
   const handleCurrentLocation = () => {
     if (!navigator.geolocation) {
@@ -23,7 +19,8 @@ const GetUserPosition = () => {
           lat: position.coords.latitude,
           lng: position.coords.longitude,
         };
-        setCoordinates(coords);
+        console.log(coords)
+        onPositionUpdate([coords.lng, coords.lat]);
         await sendCoordinatesToBackend(coords);
         setLoading(false);
       },
@@ -40,9 +37,12 @@ const GetUserPosition = () => {
       starting_point: [coords.lng, coords.lat],
       distance: distanceMeters,
     };
+
     try {
       const result = await newPath(pathData);
-      setRoute(result);
+      if (result.path) {
+        onRouteUpdate(result.path);
+      }
     } catch (error) {
       console.log("Error getting path", error);
     }
@@ -57,14 +57,7 @@ const GetUserPosition = () => {
         value={distanceKm}
         onChange={(e) => setDistanceKm(e.target.value)}
       />
-
-      {loading ? (
-        <p>Loading...</p>
-      ) : (
-        coordinates && <p>Lat: {coordinates.lat}, Lng: {coordinates.lng}</p>
-      )}
-
-      {route && <p>Route: {JSON.stringify(route.path)}</p>}
+      {loading && <p>Loading...</p>}
     </div>
   );
 };

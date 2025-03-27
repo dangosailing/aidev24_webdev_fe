@@ -5,21 +5,18 @@ import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Profile from "./pages/Profile";
 import NoPage from "./pages/NoPage";
-import GetUserPosition from "./pages/GetUserPosition";
+import PathMaker from "./pages/PathMaker";
 import Account from "./pages/Account";
 
 function App() {
   return (
     <UserProvider>
       <Router>
-        <div>
-          <h1>Test: This is rendering</h1>
-        </div>
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="login" element={<Login />} />
           <Route path="register" element={<Register />} />
-          <Route path="location" element={<GetUserPosition/>} />
+          <Route path="create-path" element={<PathMaker/>} />
           <Route path="profile" element={<Profile />} />
           <Route path="account" element={<Account />} />
           <Route path="*" element={<NoPage />} />
