@@ -1,12 +1,14 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import { useNavigate } from 'react-router-dom'
 import Button from '../components/Button'
-
+import UserContext from '../contexts/UserContextBase';
 
 const Profile = () => {
+
+  const { user } = useContext(UserContext);
   const [token, setToken] = useState('token')
   const navigate = useNavigate()
-  const user = {
+  const placeholderuser = {
     name: 'Dirk Diggler',
     role: 'Photographer',
     friends: 2000,
@@ -38,7 +40,8 @@ const Profile = () => {
   return (
     
     <>
-          <Button onClick={Logout} text={"Logout"}/>
+      <Button onClick={Logout} text={"Logout"}/>
+      <h1>Welcome, {user?.username}!</h1>
       <div style={{
         width: '100vw',
         margin: '0',
@@ -55,21 +58,21 @@ const Profile = () => {
             alt="Profile"
             style={{ borderRadius: '50%', width: 100, height: 100, objectFit: 'cover' }}
           />
-          <h1>{user.name}</h1>
-          <h3 style={{ color: 'gray' }}>{user.role}</h3>
+          <h1>{placeholderuser.name}</h1>
+          <h3 style={{ color: 'gray' }}>{placeholderuser.role}</h3>
         </div>
 
         <div style={{ display: 'flex', justifyContent: 'space-around', marginBottom: 30 }}>
           <div>
-            <h2>{user.friends}</h2>
+            <h2>{placeholderuser.friends}</h2>
             <p>Friends</p>
           </div>
           <div>
-            <h2>{user.comments}</h2>
+            <h2>{placeholderuser.comments}</h2>
             <p>Comments</p>
           </div>
           <div>
-            <h2>{user.bookmarks}</h2>
+            <h2>{placeholderuser.bookmarks}</h2>
             <p>Bookmarks</p>
           </div>
         </div>
@@ -78,7 +81,7 @@ const Profile = () => {
       <div style={{ fontFamily: 'sans-serif', padding: 20 }}>
         <div style={{ marginBottom: 30 }}>
           <h2>About me</h2>
-          <p style={{ color: '#555', lineHeight: '1.5em' }}>{user.bio}</p>
+          <p style={{ color: '#555', lineHeight: '1.5em' }}>{placeholderuser.bio}</p>
         </div>
 
         <div>
@@ -89,7 +92,7 @@ const Profile = () => {
             </button>
           </div>
           <div style={{ display: 'flex', gap: 10, flexWrap: 'wrap', marginTop: 10 }}>
-            {user.runs.map((run, index) => (
+            {placeholderuser.runs.map((run, index) => (
               <img
                 key={index}
                 src={run}
