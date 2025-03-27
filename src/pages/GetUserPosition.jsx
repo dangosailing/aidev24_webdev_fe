@@ -3,19 +3,11 @@ import { newPath } from '../services/pathApi';
 
 
 const GetUserPosition = () => {
-  const [location, setLocation] = useState("");
   const [distanceKm, setDistanceKm] = useState(1);
   const [coordinates, setCoordinates] = useState(null);
   const [route, setRoute] = useState(null);
   const [loading, setLoading] = useState(false);
 
-
-  const handleManualSubmit = async (e) => {
-    e.preventDefault();
-    if (location) {
-      fetchCoordinates(location);
-    }
-  };
 
   const handleCurrentLocation = () => {
     if (!navigator.geolocation) {
@@ -42,28 +34,6 @@ const GetUserPosition = () => {
     );
   };
 
-  const fetchCoordinates = async (location) => {
-    setLoading(true);
-    const geocoder = new window.google.maps.Geocoder();
-
-    geocoder.geocode({ address: location }, async (results, status) => {
-      if (status === "OK" && results[0]) {
-        const coords = results[0].geometry.location;
-        setCoordinates({
-          lat: coords.lat(),
-          lng: coords.lng(),
-        });
-        await sendCoordinatesToBackend({
-          lat: coords.lat(),
-          lng: coords.lng(),
-        });
-      } else {
-        alert("Could not find location");
-      }
-      setLoading(false);
-    });
-  };
-
   const sendCoordinatesToBackend = async (coords) => {
     const distanceMeters = distanceKm * 1000;
     const pathData = {
@@ -80,15 +50,6 @@ const GetUserPosition = () => {
 
   return (
     <div>
-      <form onSubmit={handleManualSubmit}>
-        <input
-          type="text"
-          placeholder="Start Location"
-          value={location}
-          onChange={(e) => setLocation(e.target.value)}
-        />
-        <button type="submit">Get my route</button>
-      </form>
       <button onClick={handleCurrentLocation}>Use my current location</button>
       <input
         type="number"
