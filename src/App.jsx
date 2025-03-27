@@ -4,7 +4,8 @@ import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Profile from "./pages/Profile";
 import NoPage from "./pages/NoPage";
-import GetUserPosition from "./pages/GetUserPosition"
+import GetUserPosition from "./pages/GetUserPosition";
+import Account from "./pages/Account";
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
         <Route path="register" element={<Register />} />
         <Route path="location" element={<GetUserPosition/>} />
         <Route path="profile" element={<Profile />} />
+        <Route path="account" element={<Account />} />
         <Route path="*" element={<NoPage />} />
       </Routes>
     </Router>
