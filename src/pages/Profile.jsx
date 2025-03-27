@@ -24,7 +24,7 @@ const Profile = () => {
 
   return (
     <div>
-      <h1>Hello {username}</h1>
+      <h1>Hello {token}</h1>
       <Button onClick={Logout} text={"Logout"}/>
     </div>
 
