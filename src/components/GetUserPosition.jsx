@@ -1,9 +1,11 @@
-import React, { useState } from 'react';
-import { newPath } from '../services/pathApi';
+import React, { useContext, useState } from "react";
+import { newPath } from "../services/pathApi";
+import PathContext from "../contexts/PathContextBase";
 
 const GetUserPosition = ({ onPositionUpdate, onRouteUpdate }) => {
-  const [distanceKm, setDistanceKm] = useState(1);
   const [loading, setLoading] = useState(false);
+
+  const { distance, setDistance } = useContext(PathContext);
 
   const handleCurrentLocation = () => {
     if (!navigator.geolocation) {
@@ -19,7 +21,6 @@ const GetUserPosition = ({ onPositionUpdate, onRouteUpdate }) => {
           lat: position.coords.latitude,
           lng: position.coords.longitude,
         };
-        console.log(coords)
         onPositionUpdate([coords.lng, coords.lat]);
         await sendCoordinatesToBackend(coords);
         setLoading(false);
@@ -32,10 +33,9 @@ const GetUserPosition = ({ onPositionUpdate, onRouteUpdate }) => {
   };
 
   const sendCoordinatesToBackend = async (coords) => {
-    const distanceMeters = distanceKm * 1000;
     const pathData = {
       starting_point: [coords.lng, coords.lat],
-      distance: distanceMeters,
+      distance: distance,
     };
 
     try {
@@ -51,11 +51,12 @@ const GetUserPosition = ({ onPositionUpdate, onRouteUpdate }) => {
   return (
     <div>
       <button onClick={handleCurrentLocation}>Use my current location</button>
+      <label htmlFor="distance">Distance in km</label>
       <input
+        name="distance"
         type="number"
-        placeholder="Distance in km"
-        value={distanceKm}
-        onChange={(e) => setDistanceKm(e.target.value)}
+        value={distance / 1000 || 1}
+        onChange={(e) => setDistance(e.target.value * 1000)}
       />
       {loading && <p>Loading...</p>}
     </div>
