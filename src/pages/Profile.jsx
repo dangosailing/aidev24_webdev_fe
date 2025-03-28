@@ -5,7 +5,7 @@ import UserContext from '../contexts/UserContextBase';
 
 const Profile = () => {
 
-  const { user } = useContext(UserContext);
+  const { user, setUser, setIsLoggedIn } = useContext(UserContext);
   const [token, setToken] = useState('token')
   const navigate = useNavigate()
   const placeholderuser = {
@@ -24,6 +24,8 @@ const Profile = () => {
 
   const Logout = () => {
     sessionStorage.removeItem('token')
+    setUser({ username: null })
+    setIsLoggedIn(true)
     navigate('/')
   }
 
