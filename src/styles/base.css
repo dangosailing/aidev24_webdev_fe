@@ -1,0 +1,55 @@
+/* Base reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  /* Typography defaults */
+  body {
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: 16px;
+    color: #222;
+    background-color: #f9f9f9;
+    line-height: 1.5;
+  }
+  
+  /* Headings */
+  h1, h2, h3, h4, h5, h6 {
+    font-weight: 600;
+    margin-bottom: 0.5em;
+  }
+  
+  p {
+    margin-bottom: 1em;
+  }
+  
+  /* Links */
+  a {
+    color: #007bff;
+    text-decoration: none;
+  }
+  
+  a:hover {
+    text-decoration: underline;
+  }
+  
+  /* Buttons */
+  button {
+    font-family: inherit;
+    font-size: 1rem;
+    cursor: pointer;
+    background-color: transparent;
+    border: none;
+  }
+  
+  /* Utility */
+  .text-center {
+    text-align: center;
+  }
+
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
