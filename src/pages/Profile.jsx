@@ -1,11 +1,10 @@
 import React, { useState, useEffect, useContext } from 'react'
 import { useNavigate } from 'react-router-dom'
-import Button from '../components/Button'
 import UserContext from '../contexts/UserContextBase';
 
 const Profile = () => {
 
-  const { user, setUser, setIsLoggedIn } = useContext(UserContext);
+  const { user } = useContext(UserContext);
   const [token, setToken] = useState('token')
   const navigate = useNavigate()
   const placeholderuser = {
@@ -22,13 +21,6 @@ const Profile = () => {
     ]
   };
 
-  const Logout = () => {
-    sessionStorage.removeItem('token')
-    setUser({ username: null })
-    setIsLoggedIn(true)
-    navigate('/')
-  }
-
   useEffect(() => {
     const sessionToken = sessionStorage.getItem('token')
     if (!sessionToken) {
@@ -42,7 +34,6 @@ const Profile = () => {
   return (
     
     <>
-      <Button onClick={Logout} text={"Logout"}/>
       <h1>Welcome, {user?.username}!</h1>
       <div style={{
         width: '100vw',
