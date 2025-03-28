@@ -19,6 +19,8 @@ import { savePath } from "../services/pathApi";
 
 const PathMaker = () => {
   const [token, setToken] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [serverMessage, setServerMessage] = useState("");
 
   const {
     register,
@@ -48,6 +50,7 @@ const PathMaker = () => {
   }, [navigate]);
 
   const onSubmit = async (data) => {
+    setLoading(true);
     setTitle(data.title);
     const pathData = {
       waypoints: route,
@@ -55,7 +58,13 @@ const PathMaker = () => {
       distance: distance,
       time: savedTime,
     };
-    savePath(pathData);
+    try {
+      const response = await savePath(pathData);
+      setServerMessage({ type: "success", text: response.message });
+    } catch {
+      setServerMessage({ type: "failed", text: response.message });
+    }
+    setLoading(false);
   };
 
   return (
@@ -90,6 +99,8 @@ const PathMaker = () => {
 
       <Timer />
       {route && route.length > 0 && (
+        <div>
+
         <form onSubmit={handleSubmit(onSubmit)}>
           <TextInput
             name="title"
@@ -98,9 +109,11 @@ const PathMaker = () => {
             registerOptions={{ required: "A title for the route is required" }}
             error={errors.username}
             required
-          />
-          <Button text={"Save path"} onClick={onSubmit} />
+            />
+          <Button text={"Save path"} type="submit" />
         </form>
+        {serverMessage && <p>{serverMessage.text}</p>}
+            </div>
       )}
     </>
   );
