@@ -33,3 +33,12 @@ export const updateUsername = async (userData) => {
         console.error("Error updating username:", error)
     }
 }
+
+export const deletUsername = async (userData) => { 
+    try {
+        const response = await axiosInstance.post("/users/delete-user", userData)
+        return response.data
+    } catch (error) {
+        console.error("Error updating username:", error)
+    }
+}

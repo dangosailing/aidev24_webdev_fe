@@ -10,6 +10,7 @@ import Hero from '../components/Hero';
 import ImageTextSection from "../components/ImageTextSection";
 //import energyImage from "../assets/energy.jpg";
 import '../styles/base.css';
+import DeleteUserButton from '../components/DeleteUserButton';
 
 const Home = () => {
   return (
@@ -51,7 +52,7 @@ const Home = () => {
             mood="😊"
           />
         </div>
-        
+
         <section className="intro-section" style={{ marginTop: '40px' }}>
           <h1>Welcome to RunPrepper</h1>
           <p>
