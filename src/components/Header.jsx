@@ -7,9 +7,9 @@ const Header = () => {
       <div className="site-header__container">
         <h1 className="site-header__title">RunPrepper</h1>
         <nav className="site-header__nav">
-          <a href="#" className="site-header__link">Home</a>
-          <a href="#" className="site-header__link">My sessions</a>
-          <a href="#" className="site-header__link">Profile</a>
+          <a href="Login" className="site-header__link">Login</a>
+          <a href="Register" className="site-header__link">Sign Up</a>
+          <a href="/" className="site-header__link">About</a>
         </nav>
       </div>
     </header>
