@@ -22,8 +22,4 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
-src/assets/happy_guy.jpg
-src/assets/harmonie.jpg
-src/assets/map.jpg
-src/assets/mountains.jpg
-src/assets/runner.jpg
+*.jpg

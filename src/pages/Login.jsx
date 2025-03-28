@@ -1,16 +1,22 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { login } from '../services/userApi'
 import { useForm } from 'react-hook-form'
+import { useNavigate } from 'react-router-dom'
+import UserContext from '../contexts/UserContextBase'
 
 const Login = () => {
   const {
     handleSubmit,
     register
   } = useForm();
+  const { setUser } = useContext(UserContext)
+
+  let navigate = useNavigate()
   const onSubmit = async (data) => {
     try {
       const response = await login(data)
-      console.log(response)
+      setUser({ username: data.username })
+      navigate('/profile')
     } catch (error) {
       console.error(error)
     }
