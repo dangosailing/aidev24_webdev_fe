@@ -47,7 +47,7 @@ const Register = () => {
           register={register}
           registerOptions={{
             required: "Password is required",
-            minLength: { value: 6, message: "At least 6 characters long" },
+            minLength: { value: 6, message: "password must be atleast 6 characters" },
           }}
           error={errors.password}
         />
