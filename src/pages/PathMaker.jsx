@@ -1,17 +1,17 @@
-import { useState,useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigate } from "react-router-dom";
 import { MapContainer, TileLayer, Marker, Popup, Polyline } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import GetUserPosition from '../components/GetUserPosition';
 import Timer from '../components/Timer';
+import MapUpdater from '../components/UpdateMapPosition';
 
 
 const PathMaker = () => {
     const [position, setPosition] = useState(null);
     const [route, setRoute] = useState([]);
-    
     const [token, setToken] = useState("");
-  
+
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -23,6 +23,7 @@ const PathMaker = () => {
     }
   }, [navigate]);
 
+
     return (
       <>
         <div className="map">
@@ -31,6 +32,7 @@ const PathMaker = () => {
               attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
               url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
             />
+            <MapUpdater route={route}/>
             
             {route.length > 0 && (
               <Marker position={route[0]}>
