@@ -1,28 +1,61 @@
 import { useState, useEffect } from "react";
 
 const Timer = () =>{
-    const [seconds, setSeconds] = useState(0)
+    const [time, setTime] = useState(0)
     const [isRunning, setIsRunning] =useState(false)
+    const [savedTime, setSavedTtme] = useState(null)
 
     useEffect(() => {
         let interval
         if (isRunning) {
             interval = setInterval(() => {
-                setSeconds((prev) =>  prev + 1)
-            }, 1000)
+                setTime((prev) =>  prev + 10)
+            }, 10)
         }else{
             clearInterval(interval)
         }
         return () => clearInterval(interval)
     }, [isRunning])
 
+    const formatTime = (ms) => {
+        const hours = Math.floor(ms / 3600000)
+        const minutes = Math.floor ((ms % 3600000) / 60000)
+        const seconds = Math.floor((ms % 60000) / 1000)
+        const milliseconds = Math.floor((ms % 1000) / 10)
+
+        return `${String(hours).padStart(2, "0")}:${String(minutes).padStart(2, "0")}:${String(seconds).padStart(2, "0")}.${String(milliseconds).padStart(2, "0")}`
+    }
+
+    const handleStart = () => {
+        setIsRunning(true)
+    }
+
+    const handlePause = () => {
+        setIsRunning(false)
+    }
+
+    const handleStop = () => {
+        setIsRunning(false)
+        setSavedTtme(time)
+    } 
+
+    const handleReset = () => {
+        setTime(0)
+        setIsRunning(false)
+        setSavedTtme(null)
+    }
+
     return(
         <div>
-            <h1>{seconds} s</h1>
+            <h1>{formatTime(time)}</h1>
+            {savedTime !== null && (
+                <p>Saved time: {formatTime(savedTime)}</p>
+            )}
             <div>
-                <button onClick={() => setIsRunning(true)}>Start</button>
-                <button onClick={() => setIsRunning(false)}>Stop</button>
-                <button onClick={() => { setSeconds(0); setIsRunning(false); }}>Reset</button>
+                <button onClick={handleStart}>Start</button>
+                <button onClick={handlePause}>Pause</button>
+                <button onClick={handleStop}>Stop</button>
+                <button onClick={handleReset}>Reset</button>
             </div>
         </div>
     )
