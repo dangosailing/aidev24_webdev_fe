@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { MapContainer, TileLayer, Marker, Popup, Polyline } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css';
 import GetUserPosition from '../components/GetUserPosition';
+import Timer from '../components/Timer';
 import MapUpdater from '../components/UpdateMapPosition';
 
 
@@ -44,6 +45,8 @@ const PathMaker = () => {
         </div>
   
         <GetUserPosition onPositionUpdate={setPosition} onRouteUpdate={setRoute} />
+
+        <Timer/>
       </>
     );
   };
