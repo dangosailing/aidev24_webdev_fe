@@ -8,7 +8,7 @@ import RunCard from '../components/RunCard';
 import MoodExperience from '../components/MoodExperience'; 
 import Hero from '../components/Hero';
 import ImageTextSection from "../components/ImageTextSection";
-import energyImage from "../assets/energy.jpg";
+//import energyImage from "../assets/energy.jpg";
 import '../styles/base.css';
 
 const Home = () => {
@@ -36,7 +36,7 @@ const Home = () => {
         </div>
 
         <ImageTextSection
-          image={energyImage}
+          image={`url(https://placehold.co/600x400)`}
           title="Push Your Limits"
           text="Track every step, every mood, and every victory. RunPrepper supports your growth — one run at a time."
         />

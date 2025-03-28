@@ -1,7 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../styles/Hero.css';
-import runnerImg from '../assets/runner.jpg';
+//import runnerImg from '../assets/runner.jpg';
 
 const Hero = () => {
   const navigate = useNavigate();
@@ -9,7 +9,7 @@ const Hero = () => {
   return (
     <section
       className="hero-section"
-      style={{ backgroundImage: `url(${runnerImg})` }}
+      style={{ backgroundImage: `url(https://placehold.co/600x400)` }}
     >
       {/* 🔲 Overlay direkt i JSX */}
       <div className="hero-overlay" />
