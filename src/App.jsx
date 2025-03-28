@@ -1,7 +1,8 @@
-import './styles/base.css';
-import './styles/responsive.css';
+import "./styles/base.css";
+import "./styles/responsive.css";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import UserProvider from './contexts/UserContext';
+import UserProvider from "./contexts/UserContext";
+import PathProvider from "./contexts/PathContext";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
@@ -15,19 +16,21 @@ import Account from "./pages/Account";
 function App() {
   return (
     <UserProvider>
-      <Header />
-      <Router>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="login" element={<Login />} />
-          <Route path="register" element={<Register />} />
-          <Route path="create-path" element={<PathMaker/>} />
-          <Route path="account" element={<Account />} />
-          <Route path="profile" element={<Profile />} />
-          <Route path="*" element={<NoPage />} />
-        </Routes>
-      </Router>
-      <Footer />
+      <PathProvider>
+        <Header />
+        <Router>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="login" element={<Login />} />
+            <Route path="register" element={<Register />} />
+            <Route path="create-path" element={<PathMaker />} />
+            <Route path="account" element={<Account />} />
+            <Route path="profile" element={<Profile />} />
+            <Route path="*" element={<NoPage />} />
+          </Routes>
+        </Router>
+        <Footer />
+      </PathProvider>
     </UserProvider>
   );
 }
