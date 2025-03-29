@@ -1,9 +1,11 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
+import PathContext from "../contexts/PathContextBase";
 
 const Timer = () =>{
     const [time, setTime] = useState(0)
     const [isRunning, setIsRunning] =useState(false)
-    const [savedTime, setSavedTtme] = useState(null)
+
+    const { savedTime, setSavedTime } = useContext(PathContext)
 
     useEffect(() => {
         let interval
@@ -36,13 +38,13 @@ const Timer = () =>{
 
     const handleStop = () => {
         setIsRunning(false)
-        setSavedTtme(time)
+        setSavedTime(time)
     } 
 
     const handleReset = () => {
         setTime(0)
         setIsRunning(false)
-        setSavedTtme(null)
+        setSavedTime(null)
     }
 
     return(
