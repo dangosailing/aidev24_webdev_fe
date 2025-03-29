@@ -39,7 +39,7 @@ const UpdateUser = () => {
           registerOptions={{ required: "A new username is required" }}
           error={errors.username}
         />
-        <Button text={"Update username"} onClick={onSubmit} />
+        <Button text={"Update username"} type="submit" />
       </form>
     </div>
   );
