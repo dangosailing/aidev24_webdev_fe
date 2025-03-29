@@ -11,3 +11,14 @@ export const newPath = async (pathData) => {
     }
 
 }
+
+export const getPaths = async () => {
+    try {
+        const response = await axiosInstance.get(`/paths/get-paths/`)
+        console.log(response)
+        return response.data
+    } catch (error) {
+        console.error("Error getting paths", error)
+        throw error
+    }
+}
