@@ -15,8 +15,8 @@ import Account from "./pages/Account";
 function App() {
   return (
     <UserProvider>
-      <Header />
       <Router>
+      <Header />
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="login" element={<Login />} />
@@ -26,8 +26,8 @@ function App() {
           <Route path="profile" element={<Profile />} />
           <Route path="*" element={<NoPage />} />
         </Routes>
-      </Router>
       <Footer />
+      </Router>
     </UserProvider>
   );
 }
