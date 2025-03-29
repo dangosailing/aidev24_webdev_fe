@@ -11,3 +11,13 @@ export const newPath = async (pathData) => {
     }
 
 }
+
+export const getGpxData = async (pathData) => {
+  try {
+    const response = await axiosInstance.post("/paths/get-path-gpx", pathData);
+    return response.data;
+  } catch (error) {
+    console.error("Error geting new path", error);
+    throw error;
+  }
+};
