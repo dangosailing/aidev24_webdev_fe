@@ -17,8 +17,8 @@ function App() {
   return (
     <UserProvider>
       <PathProvider>
-        <Header />
         <Router>
+          <Header />
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="login" element={<Login />} />
@@ -28,8 +28,8 @@ function App() {
             <Route path="profile" element={<Profile />} />
             <Route path="*" element={<NoPage />} />
           </Routes>
+          <Footer />
         </Router>
-        <Footer />
       </PathProvider>
     </UserProvider>
   );
