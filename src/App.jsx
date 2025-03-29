@@ -1,7 +1,8 @@
-import './styles/base.css';
-import './styles/responsive.css';
+import "./styles/base.css";
+import "./styles/responsive.css";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import UserProvider from './contexts/UserContext';
+import UserProvider from "./contexts/UserContext";
+import PathProvider from "./contexts/PathContext";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
