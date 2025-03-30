@@ -34,7 +34,6 @@ const UserPaths = () => {
                             <h3>{path.title}</h3>
                             <p>Distance: {path.distance}</p>
                             <p>Time: {path.time}</p>
-                            <p>Waypoints: {path.waypoints.join(", ")}</p>
                         </li>
                     ))}
                 </ul>
