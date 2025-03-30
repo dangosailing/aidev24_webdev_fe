@@ -37,6 +37,9 @@ const Header = () => {
             <Link className={"site-header__link"} to="/account">
               Account
             </Link>
+            <Link className={"site-header__link"} to="/user-paths">
+              User Paths
+            </Link>
             <Link className={"site-header__link"} to="/profile">
               Profile
             </Link>

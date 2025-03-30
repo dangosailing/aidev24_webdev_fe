@@ -12,6 +12,7 @@ import Header from "./components/Header";
 import Footer from "./components/Footer";
 import PathMaker from "./pages/PathMaker";
 import Account from "./pages/Account";
+import UserPaths from "./pages/UserPaths";
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
             <Route path="create-path" element={<PathMaker />} />
             <Route path="account" element={<Account />} />
             <Route path="profile" element={<Profile />} />
+            <Route path="user-paths" element={<UserPaths />} />
             <Route path="*" element={<NoPage />} />
           </Routes>
           <Footer />

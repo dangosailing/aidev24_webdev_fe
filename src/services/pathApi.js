@@ -10,6 +10,16 @@ export const newPath = async (pathData) => {
   }
 };
 
+export const getPaths = async () => {
+    try {
+        const response = await axiosInstance.get(`/users/get-paths`)
+        console.log("API Response:", response.data);
+        return response.data
+    } catch (error) {
+        console.error("Error getting paths", error)
+        throw error
+    }
+}
 export const savePath = async (pathData) => {
   try {
     const response = await axiosInstance.post("/paths/save-path", pathData);
