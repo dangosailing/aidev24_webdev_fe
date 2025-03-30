@@ -9,7 +9,7 @@ const Login = () => {
     handleSubmit,
     register
   } = useForm();
-  const { setUser, setIsLoggedIn } = useContext(UserContext)
+  const { setUser, setIsLoggedIn, setServerMessage } = useContext(UserContext)
 
   let navigate = useNavigate()
   const onSubmit = async (data) => {
@@ -19,7 +19,7 @@ const Login = () => {
       setIsLoggedIn(true)
       navigate('/profile')
     } catch (error) {
-      console.error(error)
+      setServerMessage(error.message)
     }
   }
 
