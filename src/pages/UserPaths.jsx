@@ -13,28 +13,17 @@ const UserPaths = () => {
                 navigate("/login");
             } else {
                 try {
-                    const data = await getPaths(); // Vänta på API-svaret
-                    console.log("Fetched Paths:", data.paths); // Kontrollera att data hämtas korrekt
-                    setPaths(data.paths || []); // Uppdatera state med rutterna
+                    const data = await getPaths();
+                    setPaths(data.paths || []);
                 } catch (error) {
                     console.error("Error fetching paths:", error);
                 }
             }
         };
 
-        fetchPaths(); // Anropa den asynkrona funktionen
+        fetchPaths();
     }, [navigate]);
-    /*
-    const fetchUserPaths = async () => {
-        try {
-            const data = await getPaths();
-            setPaths(data.paths || []);
-            console.log(paths)
-        } catch (error) {
-            console.error("Error fetching user paths:", error);
-        }
-    };
-    */
+
     return (
         <div>
             <h1>Saved paths</h1>
