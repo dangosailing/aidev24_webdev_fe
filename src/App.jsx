@@ -13,6 +13,7 @@ import Footer from "./components/Footer";
 import PathMaker from "./pages/PathMaker";
 import Account from "./pages/Account";
 import UserPaths from "./pages/UserPaths";
+import UserPath from "./pages/UserPath";
 import ServerMessage from "./components/serverMessage";
 
 function App() {
@@ -30,6 +31,7 @@ function App() {
             <Route path="account" element={<Account />} />
             <Route path="profile" element={<Profile />} />
             <Route path="user-paths" element={<UserPaths />} />
+            <Route path="user-path" element={<UserPath />} />
             <Route path="*" element={<NoPage />} />
           </Routes>
           <Footer />
