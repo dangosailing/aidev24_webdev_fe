@@ -13,6 +13,7 @@ import Footer from "./components/Footer";
 import PathMaker from "./pages/PathMaker";
 import Account from "./pages/Account";
 import UserPaths from "./pages/UserPaths";
+import ServerMessage from "./components/serverMessage";
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
       <PathProvider>
         <Router>
           <Header />
+          <ServerMessage />
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="login" element={<Login />} />
