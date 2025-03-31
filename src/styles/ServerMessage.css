@@ -1,0 +1,31 @@
+.server-message {
+    display: flex;
+    margin: auto;
+    text-align: center;
+    padding-top:10px;
+    padding-bottom:10px;
+}
+
+.server-message-container {
+    display: flex;
+    margin:auto;
+    p {
+        margin-top: 1em;
+    }
+}
+
+.close-message {
+    border-radius: 50%;
+    color: black;
+    margin: 0.5em 1em;
+}
+
+.info {
+    background-color: rgb(26, 71, 0);
+    color: white;
+}
+
+.warning {
+background-color: rgb(141, 0, 0);
+color: white;
+}
