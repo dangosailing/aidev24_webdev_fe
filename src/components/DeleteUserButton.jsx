@@ -1,38 +1,32 @@
-import React, { useState } from 'react';
-import { deleteUsername } from '../services/userApi';
+import React, { useState, useContext } from "react";
+import UserContext from "../contexts/UserContextBase";
+import { deleteUsername } from "../services/userApi";
+import { useNavigate } from "react-router-dom";
 
 const DeleteUserButton = () => {
-  const [username, setUsername] = useState('');
-  const [message, setMessage] = useState('');
+  const [message, setMessage] = useState("");
+  const { setUser, setIsLoggedIn } = useContext(UserContext);
+  let navigate = useNavigate();
 
   const handleDelete = async () => {
-    if (!username) {
-      setMessage('Please enter a username.');
-      return;
-    }
-
     const confirmDelete = window.confirm(
-      `Are you sure you want to delete the user "${username}"? This action cannot be undone.`
+      `Are you sure you want to delete the user? This action cannot be undone.`
     );
     if (!confirmDelete) return;
 
     try {
-      const response = await deleteUsername({ username });
-      setMessage(response.data.message);
+      const response = await deleteUsername();
+      sessionStorage.removeItem('token')
+      setUser({ username: null })
+      setIsLoggedIn(false)
+      navigate('/')
     } catch (error) {
-      setMessage(error.response?.data?.error || 'Something went wrong');
+      setMessage(error.response?.data?.error || "Something went wrong");
     }
   };
 
   return (
     <div className="delete-user-container">
-      <input
-        type="text"
-        placeholder="Username to delete"
-        value={username}
-        onChange={(e) => setUsername(e.target.value)}
-        className="delete-user-input"
-      />
       <button onClick={handleDelete} className="btn btn-danger">
         Delete User
       </button>
