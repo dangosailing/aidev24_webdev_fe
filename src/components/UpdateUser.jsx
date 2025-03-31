@@ -3,7 +3,7 @@ import { useForm } from "react-hook-form";
 import { updateUsername } from "../services/userApi";
 import TextInput from "./TextInput";
 import Button from "./Button";
-import UserContext from '../contexts/UserContextBase'
+import UserContext from "../contexts/UserContextBase";
 
 const UpdateUser = () => {
   const {
@@ -14,12 +14,12 @@ const UpdateUser = () => {
   } = useForm();
 
   const { setServerMessage } = useContext(UserContext);
-  const { setUser } = useContext(UserContext)
+  const { setUser } = useContext(UserContext);
 
   const onSubmit = async (data) => {
     try {
       const response = await updateUsername(data);
-      setUser({ username: data.new_username })
+      setUser({ username: data.new_username });
       setServerMessage({ type: "success", text: response.message });
       reset();
     } catch (error) {
@@ -31,8 +31,7 @@ const UpdateUser = () => {
   };
 
   return (
-    <div>
-
+    <div className="primary-form-container">
       <form onSubmit={handleSubmit(onSubmit)}>
         <TextInput
           name="new_username"
@@ -40,8 +39,9 @@ const UpdateUser = () => {
           register={register}
           registerOptions={{ required: "A new username is required" }}
           error={errors.username}
+          className="primary-user-input"
         />
-        <Button text={"Update username"} type="submit" />
+        <Button text="Update username" type="submit" />
       </form>
     </div>
   );
