@@ -14,7 +14,7 @@ const MapView = ({ center = [59.3293, 18.0686], zoom = 13 }) => {
         />
         <Marker position={center}>
           <Popup>
-            Du är här! <br /> Koordinater: {center[0]}, {center[1]}
+            You are here! <br /> coordinates: {center[0]}, {center[1]}
           </Popup>
         </Marker>
       </MapContainer>
