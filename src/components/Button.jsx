@@ -3,7 +3,7 @@ import React from "react";
 const Button = ({ text, type = "button", onClick, className }) => {
   return (
     <button
-      className={`btn btn-primary ${className || ""}`}
+    className={className ? `${className}` : "btn btn-primary"}
       type={type}
       onClick={onClick}
     >
