@@ -16,11 +16,13 @@ import MapUpdater from "../components/UpdateMapPosition";
 import Button from "../components/Button";
 import TextInput from "../components/TextInput";
 import { savePath } from "../services/pathApi";
+import UserContext from "../contexts/UserContextBase";
 
 const PathMaker = () => {
+
+  const { setServerMessage } = useContext(UserContext);
   const [token, setToken] = useState("");
   const [loading, setLoading] = useState(false);
-  const [serverMessage, setServerMessage] = useState("");
 
   const {
     register,
@@ -61,8 +63,8 @@ const PathMaker = () => {
     try {
       const response = await savePath(pathData);
       setServerMessage({ type: "success", text: response.message });
-    } catch {
-      setServerMessage({ type: "failed", text: response.message });
+    } catch (error){
+      setServerMessage({ type: "failed", text: error.message });
     }
     setLoading(false);
   };
@@ -112,7 +114,6 @@ const PathMaker = () => {
             />
           <Button text={"Save path"} type="submit" />
         </form>
-        {serverMessage && <p>{serverMessage.text}</p>}
             </div>
       )}
     </>
