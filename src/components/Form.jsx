@@ -1,17 +1,19 @@
-import React, { useState } from "react"; 
+import React, {useContext}  from "react"; 
 import { useForm } from "react-hook-form";
+import UserContext from "../contexts/UserContextBase";
 import TextInput from "../components/TextInput";
 import Button from "../components/Button";
+import ServerMessage from "../components/ServerMessage";
 
 const Form = ({ fields, onSubmit }) => {
+  const { setServerMessage } = useContext(UserContext);
+
   const {
     register,
     handleSubmit,
     formState: { errors },
     reset,
   } = useForm();
-
-  const [serverMessage, setServerMessage] = useState("");
 
   const handleFormSubmit = async (data) => {
     try {
@@ -20,7 +22,7 @@ const Form = ({ fields, onSubmit }) => {
       reset();
     } catch (error) {
       setServerMessage({
-        type: "error",
+        type: "failed",
         text: error.response?.data?.error || "Something went wrong!",
       });
     }
@@ -28,11 +30,7 @@ const Form = ({ fields, onSubmit }) => {
 
   return (
     <div className="form-container">
-      {serverMessage && (
-        <p>
-          {serverMessage.text}
-        </p>
-      )}
+      <ServerMessage/>
       <form onSubmit={handleSubmit(handleFormSubmit)}>
         {fields.map(({ name, label, type = "text", validation }) => (
           <TextInput
