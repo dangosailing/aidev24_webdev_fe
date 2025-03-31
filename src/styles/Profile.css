@@ -1,0 +1,27 @@
+.profile-banner {
+    width: 100vw;
+    margin: 0;
+    background-size: cover;
+    background-position: center;
+    padding: 20px;
+    border-radius: 8px;
+    color: white;
+  }
+  
+  .profile-img {
+    border-radius: 50%;
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+  }
+  
+  .profile-content {
+    font-family: sans-serif;
+    padding: 20px;
+  }
+  
+  .profile-stats {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 30px;
+  }
