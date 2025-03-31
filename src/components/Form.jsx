@@ -3,7 +3,6 @@ import { useForm } from "react-hook-form";
 import UserContext from "../contexts/UserContextBase";
 import TextInput from "../components/TextInput";
 import Button from "../components/Button";
-import ServerMessage from "../components/ServerMessage";
 
 const Form = ({ fields, onSubmit }) => {
   const { setServerMessage } = useContext(UserContext);
@@ -30,7 +29,6 @@ const Form = ({ fields, onSubmit }) => {
 
   return (
     <div className="form-container">
-      <ServerMessage/>
       <form onSubmit={handleSubmit(handleFormSubmit)}>
         {fields.map(({ name, label, type = "text", validation }) => (
           <TextInput
