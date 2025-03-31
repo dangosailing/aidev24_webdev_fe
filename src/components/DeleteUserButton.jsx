@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import axios from 'axios';
+import { deleteUsername } from '../services/userApi';
 
 const DeleteUserButton = () => {
   const [username, setUsername] = useState('');
@@ -17,9 +17,7 @@ const DeleteUserButton = () => {
     if (!confirmDelete) return;
 
     try {
-      const response = await axios.delete('http://localhost:5000/delete-user', {
-        data: { username },
-      });
+      const response = await deleteUsername({ username });
       setMessage(response.data.message);
     } catch (error) {
       setMessage(error.response?.data?.error || 'Something went wrong');
