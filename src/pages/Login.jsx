@@ -9,16 +9,17 @@ const Login = () => {
     handleSubmit,
     register
   } = useForm();
-  const { setUser } = useContext(UserContext)
+  const { setUser, setIsLoggedIn, setServerMessage } = useContext(UserContext)
 
   let navigate = useNavigate()
   const onSubmit = async (data) => {
     try {
       const response = await login(data)
       setUser({ username: data.username })
+      setIsLoggedIn(true)
       navigate('/profile')
     } catch (error) {
-      console.error(error)
+      setServerMessage(error.message)
     }
   }
 

@@ -1,17 +1,43 @@
-import { useState,useEffect } from 'react';
+import { useState, useEffect, useContext } from "react";
 import { useNavigate } from "react-router-dom";
-import { MapContainer, TileLayer, Marker, Popup, Polyline } from 'react-leaflet';
-import 'leaflet/dist/leaflet.css';
-import GetUserPosition from '../components/GetUserPosition';
-
-
+import { useForm } from "react-hook-form";
+import PathContext from "../contexts/PathContextBase";
+import {
+  MapContainer,
+  TileLayer,
+  Marker,
+  Popup,
+  Polyline,
+} from "react-leaflet";
+import "leaflet/dist/leaflet.css";
+import GetUserPosition from "../components/GetUserPosition";
+import Timer from "../components/Timer";
+import MapUpdater from "../components/UpdateMapPosition";
+import Button from "../components/Button";
+import TextInput from "../components/TextInput";
+import { savePath } from "../services/pathApi";
 
 const PathMaker = () => {
-    const [position, setPosition] = useState(null);
-    const [route, setRoute] = useState([]);
-    
-    const [token, setToken] = useState("");
-  
+  const [token, setToken] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [serverMessage, setServerMessage] = useState("");
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
+
+  const {
+    setTitle,
+    distance,
+    route,
+    setRoute,
+    position,
+    setPosition,
+    savedTime,
+  } = useContext(PathContext);
+
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -23,28 +49,74 @@ const PathMaker = () => {
     }
   }, [navigate]);
 
-    return (
-      <>
-        <div className="map">
-          <MapContainer center={position || [59.3293, 18.0686]} zoom={13} scrollWheelZoom={true} style={{ height: "500px", width: "100%" }}>
-            <TileLayer
-              attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-              url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-            />
-            
-            {route.length > 0 && (
-              <Marker position={route[0]}>
-                <Popup>Start of the route</Popup>
-              </Marker>
-            )}
-
-            {route.length > 0 && <Polyline positions={route} color="blue" />}
-          </MapContainer>
-        </div>
-  
-        <GetUserPosition onPositionUpdate={setPosition} onRouteUpdate={setRoute} />
-      </>
-    );
+  const onSubmit = async (data) => {
+    setLoading(true);
+    setTitle(data.title);
+    const pathData = {
+      waypoints: route,
+      title: data.title,
+      distance: distance,
+      time: savedTime,
+    };
+    try {
+      const response = await savePath(pathData);
+      setServerMessage({ type: "success", text: response.message });
+    } catch {
+      setServerMessage({ type: "failed", text: response.message });
+    }
+    setLoading(false);
   };
 
-export default PathMaker
+  return (
+    <>
+      <div className="map">
+        <MapContainer
+          center={position || [59.3293, 18.0686]}
+          zoom={13}
+          scrollWheelZoom={true}
+          style={{ height: "500px", width: "100%" }}
+        >
+          <TileLayer
+            attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+          />
+          <MapUpdater route={route} />
+
+          {route.length > 0 && (
+            <Marker position={route[0]}>
+              <Popup>Start of the route</Popup>
+            </Marker>
+          )}
+
+          {route.length > 0 && <Polyline positions={route} color="blue" />}
+        </MapContainer>
+      </div>
+
+      <GetUserPosition
+        onPositionUpdate={setPosition}
+        onRouteUpdate={setRoute}
+      />
+
+      <Timer />
+      {route && route.length > 0 && (
+        <div>
+
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <TextInput
+            name="title"
+            label="Give your route a title"
+            register={register}
+            registerOptions={{ required: "A title for the route is required" }}
+            error={errors.username}
+            required
+            />
+          <Button text={"Save path"} type="submit" />
+        </form>
+        {serverMessage && <p>{serverMessage.text}</p>}
+            </div>
+      )}
+    </>
+  );
+};
+
+export default PathMaker;
