@@ -10,7 +10,7 @@ const { setServerMessage, serverMessage } = useContext(UserContext)
     <div>
         {serverMessage && (
             <div className="server-message">
-            <p>{serverMessage}</p>
+            <p>{serverMessage.type} : {serverMessage.text}</p>
             <button className="close-message" onClick={() => {setServerMessage("")}}>close message</button>
             </div>
         )}
