@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useContext } from "react";
 import { useForm } from "react-hook-form";
 import { updateUsername } from "../services/userApi";
 import TextInput from "./TextInput";
@@ -13,7 +13,7 @@ const UpdateUser = () => {
     reset,
   } = useForm();
 
-  const [serverMessage, setServerMessage] = useState("");
+  const { setServerMessage } = useContext(UserContext);
   const { setUser } = useContext(UserContext)
 
   const onSubmit = async (data) => {
@@ -24,7 +24,7 @@ const UpdateUser = () => {
       reset();
     } catch (error) {
       setServerMessage({
-        type: "error",
+        type: "failed",
         text: error.response?.data?.error || "Something went wrong!",
       });
     }
@@ -32,7 +32,6 @@ const UpdateUser = () => {
 
   return (
     <div>
-      {serverMessage && <p>{serverMessage.text}</p>}
 
       <form onSubmit={handleSubmit(onSubmit)}>
         <TextInput
