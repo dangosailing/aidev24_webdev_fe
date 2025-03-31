@@ -1,19 +1,19 @@
-import React, {useContext} from "react";
+import React, { useContext } from "react";
 import UserContext from "../contexts/UserContextBase";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate, NavLink } from "react-router-dom";
 import Button from "./Button";
 import "../styles/Header.css";
 
 const Header = () => {
   const { isLoggedIn, setUser, setIsLoggedIn } = useContext(UserContext);
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const Logout = () => {
-    sessionStorage.removeItem('token')
-    setUser({ username: null })
-    setIsLoggedIn(false)
-    navigate('/')
-  }
+    sessionStorage.removeItem("token");
+    setUser({ username: null });
+    setIsLoggedIn(false);
+    navigate("/");
+  };
 
   return (
     <header className="site-header">
@@ -21,29 +21,65 @@ const Header = () => {
         <h1 className="site-header__title">RunPrepper</h1>
         {!isLoggedIn && (
           <nav className="site-header__nav">
-            <Link className={"site-header__link"} to="/login">
+            <NavLink
+              className={({ isActive }) =>
+                isActive ? "site-header__link active" : "site-header__link"
+              }
+              to="/login"
+            >
               Login
-            </Link>
-            <Link className={"site-header__link"} to="/register">
+            </NavLink>
+            <NavLink
+              className={({ isActive }) =>
+                isActive ? "site-header__link active" : "site-header__link"
+              }
+              to="/register"
+            >
               Register
-            </Link>
+            </NavLink>
           </nav>
         )}
         {isLoggedIn && (
           <nav className="site-header__nav">
-            <Link className={"site-header__link"} to="/create-path">
+            <NavLink
+              className={({ isActive }) =>
+                isActive ? "site-header__link active" : "site-header__link"
+              }
+              to="/create-path"
+            >
               Map Path
-            </Link>
-            <Link className={"site-header__link"} to="/account">
+            </NavLink>
+            <NavLink
+              className={({ isActive }) =>
+                isActive ? "site-header__link active" : "site-header__link"
+              }
+              to="/account"
+            >
               Account
-            </Link>
-            <Link className={"site-header__link"} to="/user-paths">
+            </NavLink>
+            <NavLink
+              className={({ isActive }) =>
+                isActive ? "site-header__link active" : "site-header__link"
+              }
+              to="/user-paths"
+            >
               User Paths
-            </Link>
-            <Link className={"site-header__link"} to="/profile">
+            </NavLink>
+            <NavLink
+              className={({ isActive }) =>
+                isActive ? "site-header__link active" : "site-header__link"
+              }
+              to="/profile"
+            >
               Profile
-            </Link>
-            <Button className={"site-header__link"} onClick={Logout} text={"Logout"}/>
+            </NavLink>
+            <Button
+              className={({ isActive }) =>
+                isActive ? "site-header__link active" : "site-header__link"
+              }
+              onClick={Logout}
+              text={"Logout"}
+            />
           </nav>
         )}
       </div>
