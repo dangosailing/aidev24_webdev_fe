@@ -1,21 +1,41 @@
-import React from 'react'
-import { useContext } from 'react'
-import UserContext from '../contexts/UserContextBase'
+import React from "react";
+import { useContext } from "react";
+import UserContext from "../contexts/UserContextBase";
+import "../styles/ServerMessage.css";
+import Button from "./Button"
 
 const ServerMessage = () => {
-
-const { setServerMessage, serverMessage } = useContext(UserContext)
+  const { setServerMessage, serverMessage } = useContext(UserContext);
 
   return (
     <div>
-        {serverMessage && (
-            <div className="server-message">
-            <p>{serverMessage.type} : {serverMessage.text}</p>
-            <button className="close-message" onClick={() => {setServerMessage("")}}>close message</button>
-            </div>
-        )}
-    </div>
-  )
-}
+      {serverMessage && (
+        <div
+          className={
+            serverMessage.type === "failed"
+              ? "server-message warning"
+              : "server-message info"
+          }
+        >
+          <div className="server-message-container">
+          <p>
+            {serverMessage.type} : {serverMessage.text}
+          </p>
+          <Button
+            className="close-message"
+            onClick={() => {
+              setServerMessage("");
+            }}
+            text="X"
+          />
+            
+          
 
-export default ServerMessage
+          </div>
+        </div>
+      )}
+    </div>
+  );
+};
+
+export default ServerMessage;
