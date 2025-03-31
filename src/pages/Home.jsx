@@ -1,16 +1,8 @@
 import React from 'react'
 import { Helmet } from 'react-helmet';
-import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
-import 'leaflet/dist/leaflet.css';
-import 'leaflet-defaulticon-compatibility';
-import 'leaflet-defaulticon-compatibility/dist/leaflet-defaulticon-compatibility.css';
-import RunCard from '../components/RunCard';
-import MoodExperience from '../components/MoodExperience'; 
+import '../styles/base.css';
 import Hero from '../components/Hero';
 import ImageTextSection from "../components/ImageTextSection";
-//import energyImage from "../assets/energy.jpg";
-import '../styles/base.css';
-import DeleteUserButton from '../components/DeleteUserButton';
 
 const Home = () => {
   return (
@@ -21,37 +13,12 @@ const Home = () => {
       </Helmet>
       <Hero />
       <div className="container">
-        <h2>Home</h2>
-        <div style={{ height: '400px', width: '100%', marginTop: '20px', borderRadius: '8px', overflow: 'hidden' }}>
-          <MapContainer center={[59.3293, 18.0686]} zoom={13} scrollWheelZoom={false} style={{ height: '100%', width: '100%' }}>
-            <TileLayer
-              attribution='&copy; <a href="https://stadiamaps.com/">Stadia Maps</a> contributors'
-              url="https://tiles.stadiamaps.com/tiles/alidade_smooth/{z}/{x}/{y}{r}.png"
-            />
-            <Marker position={[59.3293, 18.0686]}>
-              <Popup>
-                Du är här! <br /> Stockholm
-              </Popup>
-            </Marker>
-          </MapContainer>
-        </div>
-
+        
         <ImageTextSection
-          image={`url(https://placehold.co/600x400)`}
+          image={`https://images.unsplash.com/photo-1509833903111-9cb142f644e4?q=80&w=2907&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D`}
           title="Push Your Limits"
           text="Track every step, every mood, and every victory. RunPrepper supports your growth — one run at a time."
         />
-        
-        <MoodExperience />
-
-        <div style={{ marginTop: '20px' }}>
-          <RunCard
-            date="27 mars 2025"
-            distance={5.2}
-            time={31}
-            mood="😊"
-          />
-        </div>
 
         <section className="intro-section" style={{ marginTop: '40px' }}>
           <h1>Welcome to RunPrepper</h1>
@@ -72,6 +39,17 @@ const Home = () => {
           <p>
             RunPrepper makes running simple, joyful, and data-driven. Built with love for runners of all levels. Ready to hit the road? Start your next run with RunPrepper.
           </p>
+        </section>
+        
+        <ImageTextSection
+          image={`https://images.unsplash.com/photo-1476480862126-209bfaa8edc8?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D`}
+          title="Start Running Smarter"
+          text="RunPrepper makes running simple, joyful, and data-driven. Built with love for runners of all levels. Ready to hit the road? Start your next run with RunPrepper."
+        />
+        
+        <section className="cta-section">
+          <h2>Ready to run smarter?</h2>
+          <button className="btn btn-primary" onClick={() => window.location.href = '/register'}>Get Started</button>
         </section>
       </div>
     </>
