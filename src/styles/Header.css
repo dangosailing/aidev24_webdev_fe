@@ -33,3 +33,8 @@
   .site-header__link:hover {
     color: #00bcd4;
   }
+
+  .active {
+    color: #e69200;
+    font-weight: 700;
+  }
