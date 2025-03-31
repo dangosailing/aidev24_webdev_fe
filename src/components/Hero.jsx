@@ -1,7 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../styles/Hero.css';
-//import runnerImg from '../assets/runner.jpg';
 
 const Hero = () => {
   const navigate = useNavigate();
@@ -11,10 +10,8 @@ const Hero = () => {
       className="hero-section"
       style={{ backgroundImage: `url(https://placehold.co/600x400)` }}
     >
-      {/* 🔲 Overlay direkt i JSX */}
       <div className="hero-overlay" />
 
-      {/* 🔤 Content ovanpå overlay */}
       <div className="hero-content">
         <h1>RunPrepper – Run Smarter</h1>
         <p>Track your runs, set goals, and get motivated – all in one beautiful app.</p>
