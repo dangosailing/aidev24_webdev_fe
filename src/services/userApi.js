@@ -33,3 +33,13 @@ export const updateUsername = async (userData) => {
         console.error("Error updating username:", error)
     }
 }
+
+export const deleteUsername = async () => { 
+    try {
+        const response = await axiosInstance.delete("/users/delete-user")
+        return response.data;
+    } catch (error) {
+        console.error("Error deleting username:", error);
+        throw error;
+    }
+}

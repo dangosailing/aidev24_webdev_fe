@@ -31,8 +31,12 @@ const UpdateUser = () => {
   };
 
   return (
-    <div>
-      {serverMessage && <p>{serverMessage.text}</p>}
+    <div className="primary-form-container">
+      {serverMessage && (
+        <p style={{ color: serverMessage.type === "error" ? "red" : "green" }}>
+          {serverMessage.text}
+        </p>
+      )}
 
       <form onSubmit={handleSubmit(onSubmit)}>
         <TextInput
@@ -41,8 +45,9 @@ const UpdateUser = () => {
           register={register}
           registerOptions={{ required: "A new username is required" }}
           error={errors.username}
+          className="primary-user-input" // 💡 ny klass här
         />
-        <Button text={"Update username"} type="submit" />
+        <Button text="Update username" type="submit" />
       </form>
     </div>
   );
