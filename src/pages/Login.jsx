@@ -19,7 +19,7 @@ const Login = () => {
       setIsLoggedIn(true)
       navigate('/profile')
     } catch (error) {
-      setServerMessage(error.message)
+      setServerMessage({ type: "failed", text: error.message })
     }
   }
 
