@@ -1,46 +1,44 @@
-import React, { useContext } from 'react'
-import { login } from '../services/userApi'
-import { useForm } from 'react-hook-form'
-import { useNavigate } from 'react-router-dom'
-import UserContext from '../contexts/UserContextBase'
+import React, { useContext } from "react";
+import { login } from "../services/userApi";
+import Form from "../components/Form";
+import { useNavigate } from "react-router-dom";
+import UserContext from "../contexts/UserContextBase";
 
 const Login = () => {
-  const {
-    handleSubmit,
-    register
-  } = useForm();
-  const { setUser, setIsLoggedIn, setServerMessage } = useContext(UserContext)
+  const { setUser, setIsLoggedIn } = useContext(UserContext);
 
-  let navigate = useNavigate()
+  let navigate = useNavigate();
+
   const onSubmit = async (data) => {
-    try {
-      const response = await login(data)
-      setUser({ username: data.username })
-      setIsLoggedIn(true)
-      navigate('/profile')
-    } catch (error) {
-      setServerMessage({ type: "failed", text: error.message })
-    }
-  }
+      const response = await login(data);
+      setUser({ username: data.username });
+      setIsLoggedIn(true);
+      navigate("/profile");
+      return response;
+  };
+
+  const fields = [
+    {
+      name: "username",
+      label: "Username",
+      validation: { required: "Username is required" },
+    },
+    {
+      name: "password",
+      label: "Password",
+      type: "password",
+      validation: {
+        required: "Password is required",
+      },
+    },
+  ];
 
   return (
     <div>
       <h2>Login</h2>
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <input
-          type="text"
-          {...register('username', { required: true })}
-          id="username-input"
-        />
-        <input
-          type="password"
-          {...register('password', { required: true })}
-          id="userpwd-input"
-        />
-        <button type="submit">Login</button>
-      </form>
+      <Form fields={fields} onSubmit={onSubmit} />
     </div>
-  )
-}
+  );
+};
 
-export default Login
+export default Login;
