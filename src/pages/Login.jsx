@@ -34,9 +34,11 @@ const Login = () => {
   ];
 
   return (
-    <div>
-      <h2>Login</h2>
-      <Form fields={fields} onSubmit={onSubmit} />
+    <div class="wrapper">
+      <div className="form-container">
+        <h2 id="label">Login</h2>
+        <Form fields={fields} onSubmit={onSubmit} />
+      </div>
     </div>
   );
 };
