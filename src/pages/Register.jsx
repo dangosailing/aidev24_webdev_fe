@@ -38,7 +38,7 @@ const Register = () => {
     <div class="wrapper">
       <div className="form-container">
         <h2 id="label">Create new user</h2>
-        <Form id="fields" fields={fields} onSubmit={onSubmit} />
+        <Form fields={fields} onSubmit={onSubmit} />
       </div>
     </div>
   );
