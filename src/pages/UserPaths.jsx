@@ -1,15 +1,32 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { useNavigate } from "react-router-dom";
-import { getPaths } from "../services/pathApi";
+import { getPaths, deletePath } from "../services/pathApi";
 import Button from "../components/Button"
+import UserContext from "../contexts/UserContextBase";
 
 const UserPaths = () => {
   const [paths, setPaths] = useState([]);
+  const [loading, setLoading] = useState(false);
+
+  const { setServerMessage } = useContext(UserContext);
+
 
   const navigate = useNavigate()
 
 const handleNavigate = (pathData) => {
     navigate("/user-path", { state: { pathData } }); 
+  };
+
+const handleDelete = async (pathData) => {
+    setLoading(true);
+    try {
+      const response = await deletePath(pathData["path_id"]);
+      setServerMessage({ type: "success", text: response.message });
+      setPaths((prevPaths) => prevPaths.filter((path) => path.path_id !== pathData.path_id));
+    } catch (error){
+      setServerMessage({ type: "failed", text: error.message });
+    }
+    setLoading(false);
   };
 
   useEffect(() => {
@@ -33,6 +50,7 @@ const handleNavigate = (pathData) => {
   return (
     <div>
       <h1>Saved paths</h1>
+      {loading && <p>Loading</p>}
       {paths.length > 0 ? (
         <ul>
           {paths.map((path, index) => (
@@ -41,6 +59,7 @@ const handleNavigate = (pathData) => {
               <p>Distance: {path.distance}</p>
               <p>Time: {path.time}</p>
               <Button text="View Path" onClick={() => handleNavigate(path)} />
+              <Button className="btn btn-danger" text="Delete Path" onClick={() => handleDelete(path)} />
             </li>
           ))}
         </ul>
