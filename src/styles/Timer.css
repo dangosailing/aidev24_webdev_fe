@@ -1,0 +1,104 @@
+.timer-container {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    padding: 2rem;
+    max-width: 500px;
+    margin: 2rem auto;
+    border-radius: 12px;
+    text-align: center;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+  
+.timer-circle {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    border: 8px solid #007bff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1rem;
+    position: relative;
+    box-shadow: 0 0 15px rgba(0, 123, 255, 0.6);
+    z-index: 1;
+    background-color: #fff;
+}
+
+.timer-display {
+    font-size: 1.3rem;
+    font-weight: bold;
+    color: #333;
+}
+  
+.timer-saved {
+    font-size: 1rem;
+    color: #777;
+    margin-bottom: 1.5rem;
+}
+  
+.timer-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+}
+  
+.timer-buttons .btn {
+    padding: 10px 20px;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+.timer-circle::before {
+    content: '';
+    position: absolute;
+    top: -8px;
+    left: -8px;
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    border: 8px solid #007bff;
+    box-sizing: border-box;
+}
+
+.timer-circle::after {
+    content: '';
+    position: absolute;
+    top: -8px;
+    left: -8px;
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    z-index: 0;
+}
+
+@keyframes pulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(0, 123, 255, 0.4);
+    }
+    70% {
+        box-shadow: 0 0 0 15px rgba(0, 123, 255, 0);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(0, 123, 255, 0);
+    }
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.pulse-animation {
+    animation: pulse 2s infinite ease-in-out;
+}
+
+/* Added spin-animation class for conditional spinning effect */
+.spin-animation::after {
+    animation: spin 2s linear infinite;
+    background: conic-gradient(rgba(0, 123, 255, 0.3) 0%, transparent 40%, transparent 100%);
+}
