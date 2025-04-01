@@ -2,7 +2,9 @@ import React, { useState, useEffect, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { getPaths, deletePath } from "../services/pathApi";
 import Button from "../components/Button"
+import Loading from "../components/Loading"
 import UserContext from "../contexts/UserContextBase";
+
 
 const UserPaths = () => {
   const [paths, setPaths] = useState([]);
@@ -50,7 +52,7 @@ const handleDelete = async (pathData) => {
   return (
     <div>
       <h1>Saved paths</h1>
-      {loading && <p>Loading</p>}
+      {loading && <Loading/>}
       {paths.length > 0 ? (
         <ul>
           {paths.map((path, index) => (
