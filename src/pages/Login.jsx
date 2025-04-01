@@ -13,6 +13,8 @@ const Login = () => {
       const response = await login(data);
       setUser({ username: data.username });
       setIsLoggedIn(true);
+      localStorage.setItem("username", data.username)
+      localStorage.setItem("isLoggedIn", true)
       navigate("/profile");
       return response;
   };
