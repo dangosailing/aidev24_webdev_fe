@@ -29,7 +29,7 @@ const Form = ({ fields, onSubmit }) => {
   };
 
   return (
-    <div className="form-container">
+    <div>
       <form onSubmit={handleSubmit(handleFormSubmit)}>
         {fields.map(({ name, label, type = "text", validation }) => (
           <TextInput
