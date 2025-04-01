@@ -13,7 +13,6 @@ export const newPath = async (pathData) => {
 export const getPaths = async () => {
     try {
         const response = await axiosInstance.get(`/users/get-paths`)
-        console.log("API Response:", response.data);
         return response.data
     } catch (error) {
         console.error("Error getting paths", error)
@@ -26,6 +25,16 @@ export const savePath = async (pathData) => {
     return response.data;
   } catch (error) {
     console.error("Error saving path", error);
+    throw error;
+  }
+};
+
+export const deletePath = async (path_id) => {
+  try {
+    const response = await axiosInstance.delete(`/paths/delete-path/${path_id}`);
+    return response.data;
+  } catch (error) {
+    console.error("Error deleting path", error);
     throw error;
   }
 };
