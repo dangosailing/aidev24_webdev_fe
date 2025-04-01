@@ -38,3 +38,15 @@
     color: #e69200;
     font-weight: 700;
   }
+
+  .site-header__branding {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .site-header__logo {
+    width: 120px;
+    height: auto;
+    display: block;
+  }
