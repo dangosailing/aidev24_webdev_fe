@@ -13,6 +13,8 @@ const Header = () => {
     sessionStorage.removeItem("token");
     setUser({ username: null });
     setIsLoggedIn(false);
+    localStorage.removeItem("username");
+    localStorage.removeItem("isLoggedIn");
     navigate("/");
   };
 
