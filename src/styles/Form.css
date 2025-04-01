@@ -11,6 +11,13 @@
     align-items: center;
 }
 
+.wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; 
+}
+
 #label {
     display: flex;
     justify-content: center;
