@@ -26,6 +26,10 @@
     width: 100%;
 }
 
+.centered-button button {
+    display: block;
+    margin: 10px auto; 
+}
 
 @media (min-width: 768px) {
     .form-container {

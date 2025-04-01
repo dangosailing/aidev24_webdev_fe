@@ -3,6 +3,7 @@ import { useForm } from "react-hook-form";
 import UserContext from "../contexts/UserContextBase";
 import TextInput from "../components/TextInput";
 import Button from "../components/Button";
+import "../styles/Form.css"
 
 const Form = ({ fields, onSubmit }) => {
   const { setServerMessage } = useContext(UserContext);
@@ -41,7 +42,9 @@ const Form = ({ fields, onSubmit }) => {
             error={errors[name]}
           />
         ))}
-        <Button type="submit" text="Submit" />
+        <div className="centered-button">
+          <Button type="submit" text="Submit" />
+        </div>
       </form>
     </div>
   );
