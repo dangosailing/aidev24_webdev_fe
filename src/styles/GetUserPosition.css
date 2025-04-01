@@ -1,0 +1,72 @@
+.loading-container {
+  display: flex;
+  margin:auto;
+  
+}
+
+.container-user-position {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem;
+  width: 100%;
+  margin: 0 auto;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  background-color: #f9f9f9;
+}
+
+.container-set-distance {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.0em;
+  width: 100%;
+}
+
+.container-set-distance label {
+  font-size: 1rem;
+  font-weight: bold;
+  text-align: center;
+  color: #333;
+}
+
+.container-set-distance input {
+  width: 50%;
+  padding: 0.5rem;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  text-align: center;
+}
+
+
+
+@media (min-width: 768px) {
+  .container-user-position {
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 2rem;
+  }
+
+  .container-set-distance {
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .container-set-distance input {
+    width: 30%;
+  }
+}
+
+@media (min-width: 1024px) {
+  .container-user-position {
+    max-width: 800px;
+  }
+
+  .container-set-distance input {
+    width: 25%;
+  }
+}
