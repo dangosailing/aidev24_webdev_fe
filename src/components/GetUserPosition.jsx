@@ -1,6 +1,9 @@
 import React, { useContext, useState } from "react";
 import { newPath } from "../services/pathApi";
 import PathContext from "../contexts/PathContextBase";
+import Button from "./Button";
+import Loading from "./Loading";
+import "../styles/GetUserPosition.css";
 
 const GetUserPosition = ({ onPositionUpdate, onRouteUpdate }) => {
   const [loading, setLoading] = useState(false);
@@ -49,16 +52,28 @@ const GetUserPosition = ({ onPositionUpdate, onRouteUpdate }) => {
   };
 
   return (
-    <div>
-      <button onClick={handleCurrentLocation}>Use my current location</button>
-      <label htmlFor="distance">Distance in km</label>
-      <input
-        name="distance"
-        type="number"
-        value={distance / 1000 || 1}
-        onChange={(e) => setDistance(e.target.value * 1000)}
-      />
-      {loading && <p>Loading...</p>}
+    <div className="container-user-position">
+      {!loading && (
+        <div className="container-set-distance">
+          <label htmlFor="distance">Distance in km</label>
+          <input
+            className="primary-user-input"
+            name="distance"
+            type="number"
+            value={distance / 1000 || 1}
+            onChange={(e) => setDistance(e.target.value * 1000)}
+          />
+          <Button
+            text="Use my current location"
+            onClick={handleCurrentLocation}
+          ></Button>
+        </div>
+      )}
+      {loading && (
+        <div className="loading-container">
+          <Loading />
+        </div>
+      )}
     </div>
   );
 };
