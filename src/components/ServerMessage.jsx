@@ -8,7 +8,7 @@ const ServerMessage = () => {
   const { setServerMessage, serverMessage } = useContext(UserContext);
 
   return (
-    <div>
+    <div class="server-message-container">
       {serverMessage && (
         <div
           className={

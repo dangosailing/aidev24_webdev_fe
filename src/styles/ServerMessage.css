@@ -1,18 +1,23 @@
+.server-message-container {
+    position: sticky; 
+    top: 0;
+    z-index: 10000;
+    display: block;
+    width: 100%;
+  }
+
 .server-message {
     display: flex;
+    flex-direction: row;
     margin: auto;
     text-align: center;
     padding-top:10px;
     padding-bottom:10px;
-}
-
-.server-message-container {
-    display: flex;
-    margin:auto;
     p {
-        margin-top: 1em;
+        display: inline;
     }
 }
+
 
 .close-message {
     border-radius: 50%;
