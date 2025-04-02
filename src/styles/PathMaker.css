@@ -1,0 +1,15 @@
+.container-position-save {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  .form-container {
+    margin: 0;
+    max-width: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .container-position-save {
+    flex-direction: column;
+  }
+}
