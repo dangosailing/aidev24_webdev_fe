@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { getSpotifyAuthUrl } from '../services/spotifyAuth';
 import axios from 'axios';
-import MoodExperience from './MoodExperience';
+import '../styles/MoodExperience.css';
 
 const SpotifyIntegration = () => {
     const [spotifyToken, setSpotifyToken] = useState(null);
