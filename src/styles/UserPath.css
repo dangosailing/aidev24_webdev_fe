@@ -1,0 +1,42 @@
+.run-card-wrapper {
+  display: flex;
+  justify-content: flex-start;
+  margin: 10px 0;
+}
+
+.container-paths-buttons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  margin: 20px 0;
+}
+
+.container-paths-buttons button {
+  margin-right: 10px;
+}
+
+.path-form-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  margin: 20px 0;
+}
+
+.path-form-wrapper form {
+  background: #ffffff;
+  border: 1px solid #ddd;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 600px;
+  min-width: 300px;
+  box-sizing: border-box;
+}
+
+.path-form-wrapper div button {
+  display: flex;
+  margin-left: 0;
+}
