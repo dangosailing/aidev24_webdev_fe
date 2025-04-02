@@ -1,6 +1,5 @@
 import { useState, useEffect, useContext } from "react";
 import { useNavigate } from "react-router-dom";
-import { useForm } from "react-hook-form";
 import PathContext from "../contexts/PathContextBase";
 import {
   MapContainer,
@@ -21,12 +20,6 @@ import "../styles/PathMaker.css";
 const PathMaker = () => {
   const [token, setToken] = useState("");
   const [loading, setLoading] = useState(false);
-
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm();
 
   const {
     setTitle,
