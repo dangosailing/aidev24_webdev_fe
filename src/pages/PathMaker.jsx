@@ -74,7 +74,7 @@ const PathMaker = () => {
       <div className="pathmaker-grid">
         <div className="map">
           <MapContainer
-            center={position || [59.3293, 18.0686]}
+            center={position || [59.4058093, 17.9478554]}
             zoom={13}
             scrollWheelZoom={true}
             style={{ height: "500px", width: "100%", borderRadius: "8px" }}
