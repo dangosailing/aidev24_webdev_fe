@@ -6,6 +6,7 @@ import MapView from '../components/MapView';
 import RunCard from '../components/RunCard';
 import MoodExperience from '../components/MoodExperience';
 import SpotifyIntegration from '../components/MoodMusic';
+import RunHistory from '../components/RunHistory';
 
 const Profile = () => {
 
@@ -88,30 +89,14 @@ const Profile = () => {
           <SpotifyIntegration />
         </div>
 
-          <div>
-            <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-              <h2>Runs</h2>
-              <button style={{ border: 'none', background: 'none', color: '#007bff', cursor: 'pointer' }}>
-                View all
-              </button>
-            </div>
-            <div style={{ display: 'flex', gap: 10, flexWrap: 'wrap', marginTop: 10 }}>
-              {placeholderuser.runs.map((run, index) => (
-                <img
-                  key={index}
-                  src={run}
-                  alt={`Run ${index + 1}`}
-                  style={{ width: 100, height: 100, borderRadius: 8 }}
-                />
-              ))}
-            </div>
-            <RunCard
-              date="27 mars 2025"
-              distance={5.2}
-              time={31}
-              mood="😊"
-            />
-          </div>
+          <RunCard
+            date="27 mars 2025"
+            distance={5.2}
+            time={31}
+            mood="😊"
+          />
+
+          <RunHistory />
         </div>
       </div>
 
