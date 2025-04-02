@@ -3,7 +3,6 @@ import { useNavigate } from 'react-router-dom'
 import UserContext from '../contexts/UserContextBase';
 import '../styles/Profile.css';
 import MapView from '../components/MapView';
-import RunCard from '../components/RunCard';
 import MoodExperience from '../components/MoodExperience';
 import SpotifyIntegration from '../components/MoodMusic';
 
@@ -12,19 +11,6 @@ const Profile = () => {
   const { user } = useContext(UserContext);
   const [token, setToken] = useState('token')
   const navigate = useNavigate()
-  const placeholderuser = {
-    name: 'Dirk Diggler',
-    role: 'Photographer',
-    friends: 2000,
-    comments: 26,
-    bookmarks: 48,
-    bio: `An artist of considerable range, named Dirk. I loves to run, write, perform and records all of his own music.`,
-    runs: [
-      `url(https://placehold.co/600x400)`,
-      `url(https://placehold.co/600x400)`,
-      `url(https://placehold.co/600x400)`
-    ]
-  };
 
   useEffect(() => {
     const sessionToken = sessionStorage.getItem('token')
@@ -40,10 +26,10 @@ const Profile = () => {
     
     <>
       <div className="container">
-        <h1>Welcome, {user?.username}!</h1>
+        <h1 style={{ color: 'black' }}>Welcome {user?.username}!</h1>
         <div style={{
           margin: '0',
-          backgroundImage: `url(https://placehold.co/600x400)`,
+          backgroundImage: `url(https://images.unsplash.com/photo-1530143311094-34d807799e8f?q=80&w=2938&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D)`,
           backgroundSize: 'cover',
           backgroundPosition: 'center',
           padding: 20,
@@ -52,28 +38,14 @@ const Profile = () => {
         }}>
           <div style={{ textAlign: 'center', marginBottom: 40 }}>
             <img
-              src={`url(https://placehold.co/600x400)`}
+              src="https://images.unsplash.com/photo-1534308143481-c55f00be8bd7?q=80&w=3130&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
               alt="Profile"
-              style={{ borderRadius: '50%', width: 100, height: 100, objectFit: 'cover' }}
+              style={{ borderRadius: '50%', width: 150, height: 150, objectFit: 'cover', margin: '0 auto', display: 'block' }}
             />
-            <h1>{placeholderuser.name}</h1>
-            <h3 style={{ color: 'gray' }}>{placeholderuser.role}</h3>
+            <h1 style={{ color: 'black' }}>{user?.username}</h1>
+            <h3 style={{ color: 'gray' }}>The Runner</h3>
           </div>
 
-          <div style={{ display: 'flex', justifyContent: 'space-around', marginBottom: 30 }}>
-            <div>
-              <h2>{placeholderuser.friends}</h2>
-              <p>Friends</p>
-            </div>
-            <div>
-              <h2>{placeholderuser.comments}</h2>
-              <p>Comments</p>
-            </div>
-            <div>
-              <h2>{placeholderuser.bookmarks}</h2>
-              <p>Bookmarks</p>
-            </div>
-          </div>
         </div>
 
         <MapView />
@@ -81,8 +53,34 @@ const Profile = () => {
         <div>
           <div style={{ marginBottom: 30 }}>
             <h2>About me</h2>
-            <p style={{ color: '#555', lineHeight: '1.5em' }}>{placeholderuser.bio}</p>
+            <p style={{ color: '#555', lineHeight: '1.5em' }}>Passionate runner from Gothenburg. Whether it’s a morning jog by the river or training for my next 10K, running keeps me grounded.</p>
           </div>
+
+          <section className="hero-cta-section" style={{
+            backgroundImage: 'url(https://images.unsplash.com/photo-1603102859961-64b17d43580d?q=80&w=3132&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D)',
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+            padding: '40px 20px',
+            margin: '40px 0',
+            textAlign: 'center',
+            color: 'white'
+          }}>
+            <h2 style={{ fontSize: '1rem', marginBottom: '20px' }}>Ready for your next run?</h2>
+            <button
+              onClick={() => window.location.href = '/create-path'}
+              style={{
+                backgroundColor: '#007bff',
+                color: 'white',
+                padding: '10px 20px',
+                border: 'none',
+                borderRadius: '5px',
+                fontSize: '1rem',
+                cursor: 'pointer'
+              }}
+            >
+              Create your route
+            </button>
+          </section>
 
         <div>
           <SpotifyIntegration />
@@ -96,7 +94,11 @@ const Profile = () => {
               </button>
             </div>
             <div style={{ display: 'flex', gap: 10, flexWrap: 'wrap', marginTop: 10 }}>
-              {placeholderuser.runs.map((run, index) => (
+              {[
+                "https://placehold.co/600x400",
+                "https://placehold.co/600x400",
+                "https://placehold.co/600x400"
+              ].map((run, index) => (
                 <img
                   key={index}
                   src={run}
@@ -105,12 +107,6 @@ const Profile = () => {
                 />
               ))}
             </div>
-            <RunCard
-              date="27 mars 2025"
-              distance={5.2}
-              time={31}
-              mood="😊"
-            />
           </div>
         </div>
       </div>
