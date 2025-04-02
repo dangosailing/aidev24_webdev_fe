@@ -35,10 +35,6 @@ const Home = () => {
             <li><strong>Motivation Over Time:</strong> Keep a visual history of your runs and mood trends.</li>
           </ul>
 
-          <h2>Start Running Smarter</h2>
-          <p>
-            RunPrepper makes running simple, joyful, and data-driven. Built with love for runners of all levels. Ready to hit the road? Start your next run with RunPrepper.
-          </p>
         </section>
         
         <ImageTextSection
