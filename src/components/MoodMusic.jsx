@@ -50,21 +50,21 @@ const SpotifyIntegration = () => {
     };
 
     return (
-        <div>
-            <h3>Music</h3>
+        <div className="mood-experience">
+            <h3 className="mood-experience__label">Music</h3>
             {!spotifyToken ? (
                 <a href={getSpotifyAuthUrl()}>Log in with Spotify</a>
             ) : (
-                <div style={{ display: 'flex', gap: '10px' }}>
-                    <button onClick={() => fetchPlaylists('😊')}>😐</button>
-                    <button onClick={() => fetchPlaylists('😐')}>😐</button>
-                    <button onClick={() => fetchPlaylists('😩')}>😩</button>
+                <div className="mood-experience__options">
+                    <button className="mood-experience__button" onClick={() => fetchPlaylists('😊')}>😊</button>
+                    <button className="mood-experience__button" onClick={() => fetchPlaylists('😐')}>😐</button>
+                    <button className="mood-experience__button" onClick={() => fetchPlaylists('😩')}>😩</button>
                 </div>
             )}
 
             {playlists.length > 0 && (
-                <div>
-                    <h4>Your recommended playlists:</h4>
+                <div className="mood-experience__suggestion">
+                    <p>Your recommended playlists:</p>
                     <ul>
                         {playlists.map((playlist, index) => {
                             if (!playlist) return null;
@@ -84,4 +84,3 @@ const SpotifyIntegration = () => {
 };
 
 export default SpotifyIntegration;
-
