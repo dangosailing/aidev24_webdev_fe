@@ -45,7 +45,6 @@ const UserPath = () => {
       parseInt(data.timeHrs || 0) * 3600 +
       parseInt(data.timeMin || 0) * 60 +
       parseInt(data.timeSec || 0);
-    console.log(path_id);
     let new_data = {
       waypoints: waypoints,
       title: data.title,

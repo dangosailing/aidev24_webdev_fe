@@ -47,7 +47,10 @@ const GetUserPosition = ({ onPositionUpdate, onRouteUpdate }) => {
         onRouteUpdate(result.path);
       }
     } catch (error) {
-      console.log("Error getting path", error);
+      setServerMessage({
+        type: "failed",
+        text: error.response?.data?.error || "Error getting path!",
+      });
     }
   };
 
