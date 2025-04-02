@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import '../styles/MoodExperience.css';
-
+/*Används inte just nu men sparar ifall vi ska använda denna component framöver*/
 const moods = ['😊', '😐', '😩'];
 
 const moodToPlaylist = {
