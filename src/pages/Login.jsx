@@ -3,6 +3,7 @@ import { login } from "../services/userApi";
 import Form from "../components/Form";
 import { useNavigate } from "react-router-dom";
 import UserContext from "../contexts/UserContextBase";
+import logo from "../assets/runprepperlogo.svg";
 
 const Login = () => {
   const { setUser, setIsLoggedIn } = useContext(UserContext);
@@ -36,11 +37,10 @@ const Login = () => {
   ];
 
   return (
-    <div className="wrapper">
-      <div className="form-container">
-        <h2 id="label">Login</h2>
-        <Form fields={fields} onSubmit={onSubmit} />
-      </div>
+    <div className="form-container">
+      <h2 id="label">Login</h2>
+      <img src={logo} alt="RunPrepper Logo" className="login-logo" />
+      <Form fields={fields} onSubmit={onSubmit} />
     </div>
   );
 };

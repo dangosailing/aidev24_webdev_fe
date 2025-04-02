@@ -18,10 +18,14 @@ const Account = () => {
   }, [navigate]);
 
   return (
-    <div>
+    <div className="container">
       <h1>Manage account</h1>
-      <UpdateUser />
-      <DeleteUserButton />
+      <div className="primary-form-container">
+        <UpdateUser />
+      </div>
+      <div className="delete-user-container">
+        <DeleteUserButton />
+      </div>
     </div>
   );
 };
