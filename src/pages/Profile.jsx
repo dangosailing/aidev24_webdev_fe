@@ -84,7 +84,9 @@ const Profile = () => {
             <p style={{ color: '#555', lineHeight: '1.5em' }}>{placeholderuser.bio}</p>
           </div>
 
-          <MoodExperience />
+        <div>
+          <SpotifyIntegration />
+        </div>
 
           <div>
             <div style={{ display: 'flex', justifyContent: 'space-between' }}>
@@ -113,10 +115,6 @@ const Profile = () => {
         </div>
       </div>
 
-      <div>
-        <h1>Recomended music:</h1>
-        <SpotifyIntegration />
-      </div>
     </>
   );
 };
