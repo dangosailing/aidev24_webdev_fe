@@ -5,6 +5,7 @@ import '../styles/Profile.css';
 import MapView from '../components/MapView';
 import RunCard from '../components/RunCard';
 import MoodExperience from '../components/MoodExperience';
+import SpotifyIntegration from '../components/MoodMusic';
 
 const Profile = () => {
 
@@ -110,6 +111,11 @@ const Profile = () => {
             />
           </div>
         </div>
+      </div>
+
+      <div>
+        <h1>Recomended music:</h1>
+        <SpotifyIntegration />
       </div>
     </>
   );

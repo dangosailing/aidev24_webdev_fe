@@ -1,37 +1,63 @@
 .site-header {
-    background-color: #1e1e1e;
-    padding: 12px 24px;
-    color: white;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  }
-  
-  .site-header__container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    max-width: 1200px;
-    margin: 0 auto;
-  }
-  
-  .site-header__title {
-    font-size: 24px;
-    font-weight: bold;
-  }
-  
-  .site-header__nav {
-    display: flex;
-    gap: 16px;
-  }
-  
-  .site-header__link {
-    color: white;
-    text-decoration: none;
-    font-weight: 500;
-    transition: color 0.2s ease;
-  }
-  
-  .site-header__link:hover {
-    color: #00bcd4;
+  background-color: #1c1c1c;
+  color: white;
+  padding: 1rem;
+  position: relative;
+}
+
+.site-header__container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.site-header__title {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.site-header__nav {
+  display: flex;
+  gap: 1rem;
+}
+
+.site-header__link {
+  color: white;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.site-header__link:hover {
+  text-decoration: underline;
+}
+
+/* Hamburger */
+.hamburger {
+  display: none;
+  background: none;
+  border: none;
+  font-size: 1.8rem;
+  color: white;
+  cursor: pointer;
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  z-index: 10;
+}
+
+/* Branding */
+.site-header__branding {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+/* Mobile view */
+@media (max-width: 768px) {
+  .hamburger {
+    display: block;
   }
 
   .active {
@@ -39,14 +65,30 @@
     font-weight: 700;
   }
 
-  .site-header__branding {
-    display: flex;
+  .site-header__nav {
+    display: none;
+    flex-direction: column;
     align-items: center;
-    gap: 10px;
+    gap: 1rem;
+    background-color: #1c1c1c;
+    position: absolute;
+    top: 60px;
+    left: 0;
+    right: 0;
+    padding: 1rem;
+    z-index: 5;
   }
 
-  .site-header__logo {
-    width: 120px;
-    height: auto;
-    display: block;
+  .site-header__nav.open {
+    display: flex;
   }
+}
+
+.site-header__logo {
+  max-height: 200px;
+  max-width: 120px;
+  height: auto;
+  width: auto;
+  display: block;
+  object-fit: contain;
+}

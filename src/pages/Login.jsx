@@ -13,6 +13,8 @@ const Login = () => {
       const response = await login(data);
       setUser({ username: data.username });
       setIsLoggedIn(true);
+      localStorage.setItem("username", data.username)
+      localStorage.setItem("isLoggedIn", true)
       navigate("/profile");
       return response;
   };
@@ -34,9 +36,11 @@ const Login = () => {
   ];
 
   return (
-    <div>
-      <h2>Login</h2>
-      <Form fields={fields} onSubmit={onSubmit} />
+    <div className="wrapper">
+      <div className="form-container">
+        <h2 id="label">Login</h2>
+        <Form fields={fields} onSubmit={onSubmit} />
+      </div>
     </div>
   );
 };
