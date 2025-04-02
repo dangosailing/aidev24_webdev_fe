@@ -25,3 +25,16 @@
   .footer-socials a:hover {
     text-decoration: underline;
   }
+
+  .social-icon {
+    width: 24px;
+    height: 24px;
+    margin: 0 10px;
+    vertical-align: middle;
+    filter: grayscale(100%);
+    transition: filter 0.3s ease;
+  }
+
+  .social-icon:hover {
+    filter: none;
+  }
