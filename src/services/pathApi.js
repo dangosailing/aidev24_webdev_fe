@@ -38,3 +38,13 @@ export const deletePath = async (path_id) => {
     throw error;
   }
 };
+
+export const updatePath = async (path_id, pathData) => {
+  try {
+    const response = await axiosInstance.put(`/paths/update-path/${path_id}`, pathData);
+    return response.data;
+  } catch (error) {
+    console.error("Error deleting path", error);
+    throw error;
+  }
+};
