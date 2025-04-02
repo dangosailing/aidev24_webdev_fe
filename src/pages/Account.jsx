@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import UpdateUser from "../components/UpdateUser";
 import DeleteUserButton from "../components/DeleteUserButton";
+import UpdatePassword from "../components/UpdatePassword";
 
 const Account = () => {
   const [token, setToken] = useState("");
@@ -23,6 +24,7 @@ const Account = () => {
       <div className="primary-form-container">
         <UpdateUser />
       </div>
+      <UpdatePassword/>
       <div className="delete-user-container">
         <DeleteUserButton />
       </div>
