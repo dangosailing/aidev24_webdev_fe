@@ -32,7 +32,7 @@ const Timer = () => {
   const handlePause = () => setIsRunning(false);
   const handleStop = () => {
     setIsRunning(false);
-    setSavedTime(time);
+    setSavedTime(time/1000);
   };
   const handleReset = () => {
     setTime(0);
