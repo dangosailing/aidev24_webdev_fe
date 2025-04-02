@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { getSpotifyAuthUrl } from '../services/spotifyAuth';
 import axios from 'axios';
+import '../styles/MoodExperience.css';
 
 const SpotifyIntegration = () => {
     const [spotifyToken, setSpotifyToken] = useState(null);
@@ -23,13 +24,13 @@ const SpotifyIntegration = () => {
             return;
         }
 
-        const moodToGenre = {
-            Happy: 'pop',
-            Sad: 'classical',
-            Relaxed: 'chill',
+        const moodToPlaylist = {
+            '😊': 'Energetic Pop',
+            '😐': 'Chill Vibes',
+            '😩': 'Motivation Boost'
         };
 
-        const genre = moodToGenre[mood] || 'pop';
+        const genre = moodToPlaylist[mood] || 'pop';
 
         try {
             const response = await axios.get('https://api.spotify.com/v1/search', {
@@ -49,21 +50,21 @@ const SpotifyIntegration = () => {
     };
 
     return (
-        <div>
-            <h3>Music</h3>
+        <div className="mood-experience">
+            <h3 className="mood-experience__label">Music</h3>
             {!spotifyToken ? (
                 <a href={getSpotifyAuthUrl()}>Log in with Spotify</a>
             ) : (
-                <div style={{ display: 'flex', gap: '10px' }}>
-                    <button onClick={() => fetchPlaylists('Happy')}>Happy playlists</button>
-                    <button onClick={() => fetchPlaylists('Sad')}>Sad playlists</button>
-                    <button onClick={() => fetchPlaylists('Relaxed')}>Relaxed playlists</button>
+                <div className="mood-experience__options">
+                    <button className="mood-experience__button" onClick={() => fetchPlaylists('😊')}>😊</button>
+                    <button className="mood-experience__button" onClick={() => fetchPlaylists('😐')}>😐</button>
+                    <button className="mood-experience__button" onClick={() => fetchPlaylists('😩')}>😩</button>
                 </div>
             )}
 
             {playlists.length > 0 && (
-                <div>
-                    <h4>Your recommended playlists:</h4>
+                <div className="mood-experience__suggestion">
+                    <p>Your recommended playlists:</p>
                     <ul>
                         {playlists.map((playlist, index) => {
                             if (!playlist) return null;
@@ -83,4 +84,3 @@ const SpotifyIntegration = () => {
 };
 
 export default SpotifyIntegration;
-
