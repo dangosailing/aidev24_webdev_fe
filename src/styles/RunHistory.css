@@ -1,0 +1,36 @@
+.run-history {
+    margin-top: 2rem;
+  }
+  
+  .run-history__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .run-history__button {
+    border: none;
+    background: none;
+    color: #007bff;
+    cursor: pointer;
+    font-weight: 500;
+    transition: color 0.2s ease;
+  }
+  
+  .run-history__button:hover {
+    color: #0056b3;
+  }
+  
+  .run-history__images {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin: 10px;
+  }
+  
+  .run-history__image {
+    width: 100px;
+    height: 100px;
+    border-radius: 8px;
+    object-fit: cover;
+  }
