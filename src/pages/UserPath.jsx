@@ -23,7 +23,7 @@ const UserPath = () => {
   const [distance, setDistance] = useState(pathData["distance"]);
   const [time, setTime] = useState(pathData["time"]);
   const [token, setToken] = useState("");
-  const [editMode, setEditMode] = useState(true);
+  const [editMode, setEditMode] = useState(false);
 
   const { path_id, waypoints } = pathData;
 
