@@ -60,7 +60,7 @@ const handleDelete = async (pathData) => {
             <li key={index} className="path-card">
               <h3 className="">{path.title}</h3>
               <p>Distance: {path.distance}</p>
-              <p>Time: {path.time}</p>
+              <p>Last saved time: {Math.floor(path.time / 3600)}h {Math.floor((path.time % 3600) / 60)}m {path.time % 60}s</p>
               <div className="path-button-container">
               <Button text="View Path" onClick={() => handleNavigate(path)} />
               <Button className="btn btn-danger" text="Delete Path" onClick={() => handleDelete(path)} />
