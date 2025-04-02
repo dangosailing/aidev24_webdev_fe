@@ -10,18 +10,98 @@ import {
 import "leaflet/dist/leaflet.css";
 import MapUpdater from "../components/UpdateMapPosition";
 import Button from "../components/Button";
+import RunCard from "../components/RunCard";
+import Form from "../components/Form";
+import "../styles/UserPath.css";
+import { updatePath } from "../services/pathApi";
 
 const UserPath = () => {
-  const [token, setToken] = useState("");
-  
   const location = useLocation();
   const { pathData } = location.state || {};
 
-  const { title, distance, waypoints } = pathData;
+  const [title, setTitle] = useState(pathData["title"]);
+  const [distance, setDistance] = useState(pathData["distance"]);
+  const [time, setTime] = useState(pathData["time"]);
+  const [token, setToken] = useState("");
+  const [editMode, setEditMode] = useState(true);
+
+  const { path_id, waypoints } = pathData;
 
   const position = waypoints[0];
 
   const navigate = useNavigate();
+
+  const convertTime = (timeInSeconds) => {
+    const hours = Math.floor(timeInSeconds / 3600);
+    const minutes = Math.floor((timeInSeconds % 3600) / 60);
+    const seconds = timeInSeconds % 60;
+    return { hours, minutes, seconds };
+  };
+
+  const { hours, minutes, seconds } = convertTime(time);
+
+  const onSubmit = async (data) => {
+    let new_time =
+      parseInt(data.timeHrs || 0) * 3600 +
+      parseInt(data.timeMin || 0) * 60 +
+      parseInt(data.timeSec || 0);
+    console.log(path_id);
+    let new_data = {
+      waypoints: waypoints,
+      title: data.title,
+      time: new_time,
+      distance: distance,
+    };
+
+    
+      const response = await updatePath(path_id, new_data);
+      setTitle(new_data["title"]);
+      setTime(new_data["time"]);
+      setEditMode(false);
+      return response
+    
+    }
+
+  const fields = [
+    {
+      name: "title",
+      label: "New title",
+      validation: { required: "A title is required" },
+      defaultValue: title,
+    },
+    {
+      name: "timeHrs",
+      label: "Update Time (Hours)",
+      type: "number",
+      validation: {
+        required: "Hours are required",
+        min: { value: 0, message: "Hours cannot be negative" },
+      },
+      defaultValue: hours,
+    },
+    {
+      name: "timeMin",
+      label: "Update Time (Minutes)",
+      type: "number",
+      validation: {
+        required: "Minutes are required",
+        min: { value: 0, message: "Minutes cannot be negative" },
+        max: { value: 59, message: "Minutes cannot exceed 59" },
+      },
+      defaultValue: minutes,
+    },
+    {
+      name: "timeSec",
+      label: "Update Time (Seconds)",
+      type: "number",
+      validation: {
+        required: "Seconds are required",
+        min: { value: 0, message: "Seconds cannot be negative" },
+        max: { value: 59, message: "Seconds cannot exceed 59" },
+      },
+      defaultValue: seconds,
+    },
+  ];
 
   useEffect(() => {
     const sessionToken = sessionStorage.getItem("token");
@@ -38,14 +118,27 @@ const UserPath = () => {
 
   return (
     <div>
-      <h1>Path Details</h1>
-      <Button text="Back to paths" onClick={() => handleNavigate()} />
-
+      <h1 className="page-heading">Path Details</h1>
       {title && distance ? (
         <div>
-          <div>
-            <p>Title: {title}</p>
-            <p>Distance: {distance} km</p>
+          {!editMode && (
+            <div className="run-card-wrapper">
+              <RunCard title={title} time={time} distance={distance} />
+            </div>
+          )}
+          {editMode && (
+            <div className="path-form-wrapper">
+              <Form fields={fields} onSubmit={onSubmit} />
+            </div>
+          )}
+          <div className="container-paths-buttons">
+            <Button text="Back to paths" onClick={() => handleNavigate()} />
+            {!editMode && (
+              <Button text="Edit" onClick={() => setEditMode(true)} />
+            )}
+            {editMode && (
+              <Button text="Cancel" onClick={() => setEditMode(false)} />
+            )}
           </div>
           <div className="map">
             <MapContainer
