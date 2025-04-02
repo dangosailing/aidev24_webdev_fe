@@ -34,6 +34,16 @@ export const updateUsername = async (userData) => {
     }
 }
 
+export const editPassword = async (userData) => { 
+    try {
+        const response = await axiosInstance.put("/users/update-user-password", userData)
+        return response.data;
+    } catch (error) {
+        console.error("Error updating password:", error);
+        throw error;
+    }
+}
+
 export const deleteUsername = async () => { 
     try {
         const response = await axiosInstance.delete("/users/delete-user")
