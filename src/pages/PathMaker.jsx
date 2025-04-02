@@ -1,6 +1,5 @@
 import { useState, useEffect, useContext } from "react";
 import { useNavigate } from "react-router-dom";
-import { useForm } from "react-hook-form";
 import PathContext from "../contexts/PathContextBase";
 import {
   MapContainer,
@@ -13,22 +12,14 @@ import "leaflet/dist/leaflet.css";
 import GetUserPosition from "../components/GetUserPosition";
 import Timer from "../components/Timer";
 import MapUpdater from "../components/UpdateMapPosition";
-import Button from "../components/Button";
-import TextInput from "../components/TextInput";
 import { savePath } from "../services/pathApi";
-import UserContext from "../contexts/UserContextBase";
+import Form from "../components/Form";
+import Loading from "../components/Loading"
+import "../styles/PathMaker.css";
 
 const PathMaker = () => {
-
-  const { setServerMessage } = useContext(UserContext);
   const [token, setToken] = useState("");
   const [loading, setLoading] = useState(false);
-
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm();
 
   const {
     setTitle,
@@ -39,6 +30,14 @@ const PathMaker = () => {
     setPosition,
     savedTime,
   } = useContext(PathContext);
+
+  const fields = [
+    {
+      name: "title",
+      label: "Path Title",
+      validation: { required: "A title is required" },
+    },
+  ];
 
   const navigate = useNavigate();
 
@@ -53,20 +52,16 @@ const PathMaker = () => {
 
   const onSubmit = async (data) => {
     setLoading(true);
-    setTitle(data.title);
     const pathData = {
       waypoints: route,
       title: data.title,
       distance: distance,
       time: savedTime,
     };
-    try {
-      const response = await savePath(pathData);
-      setServerMessage({ type: "success", text: response.message });
-    } catch (error){
-      setServerMessage({ type: "failed", text: error.message });
-    }
+    const response = await savePath(pathData);
+    setTitle(data.title);
     setLoading(false);
+    return response
   };
 
   return (
@@ -94,28 +89,22 @@ const PathMaker = () => {
             {route.length > 0 && <Polyline positions={route} color="blue" />}
           </MapContainer>
         </div>
-
-        <GetUserPosition
-          onPositionUpdate={setPosition}
-          onRouteUpdate={setRoute}
-        />
+        { !loading && (
+        <div className="container-position-save">
+          <GetUserPosition
+            onPositionUpdate={setPosition}
+            onRouteUpdate={setRoute}
+          />
+          {route && route.length > 0 && (
+              <Form fields={fields} onSubmit={onSubmit} buttonText="Save path"/>
+            
+          )}
+        </div>)
+        }
+        {loading &&
+        <Loading />        }
 
         <Timer />
-        {route && route.length > 0 && (
-          <div>
-            <form onSubmit={handleSubmit(onSubmit)}>
-              <TextInput
-                name="title"
-                label="Give your route a title"
-                register={register}
-                registerOptions={{ required: "A title for the route is required" }}
-                error={errors.username}
-                required
-              />
-              <Button text={"Save path"} type="submit" />
-            </form>
-          </div>
-        )}
       </div>
     </div>
   );
