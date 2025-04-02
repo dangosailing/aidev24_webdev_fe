@@ -11,6 +11,8 @@
   align-items: center;
   max-width: 1200px;
   margin: 0 auto;
+  padding-right: 3rem;
+  position: relative;
 }
 
 .site-header__title {
@@ -41,10 +43,9 @@
   font-size: 1.8rem;
   color: white;
   cursor: pointer;
-  position: absolute;
-  top: 20px;
-  right: 20px;
+  margin-left: auto;
   z-index: 10;
+  position: relative;
 }
 
 /* Branding */
@@ -70,13 +71,14 @@
     flex-direction: column;
     align-items: center;
     gap: 1rem;
-    background-color: #1c1c1c;
+    background-color: rgba(28, 28, 28, 0.9); /* Slightly transparent */
     position: absolute;
     top: 60px;
-    left: 0;
-    right: 0;
+    /*left: 10%;
+    right: 10%;*/
     padding: 1rem;
     z-index: 5;
+    border-radius: 8px;
   }
 
   .site-header__nav.open {

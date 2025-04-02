@@ -31,25 +31,28 @@ const Header = () => {
             />
           </NavLink>
         </div>
-        
+
+        <nav className={`site-header__nav ${menuOpen ? "open" : ""}`}>
+          {!isLoggedIn && (
+            <>
+              <NavLink className="site-header__link" to="/login">Login</NavLink>
+              <NavLink className="site-header__link" to="/register">Register</NavLink>
+            </>
+          )}
+          {isLoggedIn && (
+            <>
+              <NavLink className="site-header__link" to="/create-path">Map Path</NavLink>
+              <NavLink className="site-header__link" to="/account">Account</NavLink>
+              <NavLink className="site-header__link" to="/user-paths">User Paths</NavLink>
+              <NavLink className="site-header__link" to="/profile">Profile</NavLink>
+              <Button onClick={Logout} text={"Logout"} />
+            </>
+          )}
+        </nav>
+
         <button className="hamburger" onClick={() => setMenuOpen(!menuOpen)}>
           ☰
         </button>
-        {!isLoggedIn && (
-          <nav className={`site-header__nav ${menuOpen ? "open" : ""}`}>
-            <NavLink className="site-header__link" to="/login">Login</NavLink>
-            <NavLink className="site-header__link" to="/register">Register</NavLink>
-          </nav>
-        )}
-        {isLoggedIn && (
-          <nav className={`site-header__nav ${menuOpen ? "open" : ""}`}>
-            <NavLink className="site-header__link" to="/create-path">Map Path</NavLink>
-            <NavLink className="site-header__link" to="/account">Account</NavLink>
-            <NavLink className="site-header__link" to="/user-paths">User Paths</NavLink>
-            <NavLink className="site-header__link" to="/profile">Profile</NavLink>
-            <Button onClick={Logout} text={"Logout"} />
-          </nav>
-        )}
       </div>
     </header>
   );
