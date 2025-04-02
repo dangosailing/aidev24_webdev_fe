@@ -74,8 +74,8 @@
     background-color: rgba(28, 28, 28, 0.9); /* Slightly transparent */
     position: absolute;
     top: 60px;
-    /*left: 10%;
-    right: 10%;*/
+    left: 10%;
+    right: 10%;
     padding: 1rem;
     z-index: 5;
     border-radius: 8px;
