@@ -4,7 +4,7 @@ import { getPaths, deletePath } from "../services/pathApi";
 import Button from "../components/Button"
 import Loading from "../components/Loading"
 import UserContext from "../contexts/UserContextBase";
-
+import "../styles/UserPaths.css";
 
 const UserPaths = () => {
   const [paths, setPaths] = useState([]);
@@ -51,20 +51,24 @@ const handleDelete = async (pathData) => {
 
   return (
     <div>
-      <h1>Saved paths</h1>
+      <h1 className="page-heading">Saved paths</h1>
       {loading && <Loading/>}
       {paths.length > 0 ? (
-        <ul>
+        <div>
+        <ul className="path-container">
           {paths.map((path, index) => (
-            <li key={index}>
-              <h3>{path.title}</h3>
+            <li key={index} className="path-card">
+              <h3 className="">{path.title}</h3>
               <p>Distance: {path.distance}</p>
               <p>Time: {path.time}</p>
+              <div className="path-button-container">
               <Button text="View Path" onClick={() => handleNavigate(path)} />
               <Button className="btn btn-danger" text="Delete Path" onClick={() => handleDelete(path)} />
+              </div>
             </li>
           ))}
         </ul>
+        </div>
       ) : (
         <p>You have no saved paths.</p>
       )}
