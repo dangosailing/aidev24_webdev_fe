@@ -166,3 +166,10 @@ button, .btn {
   border-radius: 4px;
   margin-bottom: 12px;
 }
+
+.page-heading {
+  text-align: center;
+  font-size: 2rem;
+  font-weight: bold; 
+  margin: 20px 0;
+}
