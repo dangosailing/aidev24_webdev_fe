@@ -47,10 +47,22 @@
   z-index: 10;
 }
 
+/* Branding */
+.site-header__branding {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
 /* Mobile view */
 @media (max-width: 768px) {
   .hamburger {
     display: block;
+  }
+
+  .active {
+    color: #e69200;
+    font-weight: 700;
   }
 
   .site-header__nav {
@@ -70,4 +82,13 @@
   .site-header__nav.open {
     display: flex;
   }
+}
+
+.site-header__logo {
+  max-height: 200px;
+  max-width: 120px;
+  height: auto;
+  width: auto;
+  display: block;
+  object-fit: contain;
 }
