@@ -8,8 +8,19 @@
   }
 }
 
-@media (max-width: 768px) {
+.container-map-style {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+@media (max-width: 350px) {
   .container-position-save {
     flex-direction: column;
+  }
+
+  .container-map-style {
+    flex-direction: column;
+    align-items: center;
   }
 }

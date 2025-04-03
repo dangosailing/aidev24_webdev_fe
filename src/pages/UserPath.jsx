@@ -24,6 +24,7 @@ const UserPath = () => {
   const [time, setTime] = useState(pathData["time"]);
   const [token, setToken] = useState("");
   const [editMode, setEditMode] = useState(false);
+  const [mapStyle, setMapStyle] = useState("detailed");
 
   const { path_id, waypoints } = pathData;
 
@@ -52,14 +53,12 @@ const UserPath = () => {
       distance: distance,
     };
 
-    
-      const response = await updatePath(path_id, new_data);
-      setTitle(new_data["title"]);
-      setTime(new_data["time"]);
-      setEditMode(false);
-      return response
-    
-    }
+    const response = await updatePath(path_id, new_data);
+    setTitle(new_data["title"]);
+    setTime(new_data["time"]);
+    setEditMode(false);
+    return response;
+  };
 
   const fields = [
     {
@@ -120,6 +119,15 @@ const UserPath = () => {
       <h1 className="page-heading">Path Details</h1>
       {title && distance ? (
         <div>
+          <div className="container-paths-buttons">
+            <Button text="Back to paths" onClick={() => handleNavigate()} />
+            {!editMode && (
+              <Button text="Edit" onClick={() => setEditMode(true)} />
+            )}
+            {editMode && (
+              <Button text="Cancel" onClick={() => setEditMode(false)} />
+            )}
+          </div>
           {!editMode && (
             <div className="run-card-wrapper">
               <RunCard title={title} time={time} distance={distance} />
@@ -130,14 +138,20 @@ const UserPath = () => {
               <Form fields={fields} onSubmit={onSubmit} />
             </div>
           )}
-          <div className="container-paths-buttons">
-            <Button text="Back to paths" onClick={() => handleNavigate()} />
-            {!editMode && (
-              <Button text="Edit" onClick={() => setEditMode(true)} />
-            )}
-            {editMode && (
-              <Button text="Cancel" onClick={() => setEditMode(false)} />
-            )}
+
+          <div className="container-map-style">
+            <Button
+              text={"Detailed"}
+              onClick={() => setMapStyle("detailed")}
+            ></Button>
+            <Button
+              text={"Simplified"}
+              onClick={() => setMapStyle("simple")}
+            ></Button>
+            <Button
+              text={"Dark Mode"}
+              onClick={() => setMapStyle("darkmode")}
+            ></Button>
           </div>
           <div className="map">
             <MapContainer
@@ -146,10 +160,25 @@ const UserPath = () => {
               scrollWheelZoom={true}
               style={{ height: "500px", width: "100%" }}
             >
-              <TileLayer
-                attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-                url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-              />
+              {mapStyle === "detailed" && (
+                <TileLayer
+                  attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                  url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                />
+              )}
+              {mapStyle === "simple" && (
+                <TileLayer
+                  attribution='&copy; <a href="https://carto.com/">CARTO</a> contributors'
+                  url="https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png"
+                />
+              )}
+              {mapStyle === "darkmode" && (
+                <TileLayer
+                  attribution='&copy; <a href="https://carto.com/">CARTO</a> contributors'
+                  url="https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png"
+                />
+              )}
+
               <MapUpdater route={waypoints} />
 
               {waypoints.length > 0 && (
