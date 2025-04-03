@@ -2,6 +2,7 @@ const { defineConfig } = require("cypress");
 //const customViteConfig = require("./customConfig");
 
 module.exports = defineConfig({
+  chromeWebSecurity: false,
   component: {
     devServer: {
       framework: "react",
@@ -19,6 +20,7 @@ module.exports = defineConfig({
   },
 
   e2e: {
+    baseUrl: 'http://127.0.0.1:5173',
     setupNodeEvents(on, config) {
       // implement node event listeners here
     },
