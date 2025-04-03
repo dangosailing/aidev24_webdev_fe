@@ -42,9 +42,9 @@ const Header = () => {
           {isLoggedIn && (
             <>
               <NavLink className="site-header__link" to="/create-path">Map Path</NavLink>
-              <NavLink className="site-header__link" to="/account">Account</NavLink>
+              <NavLink data-testid="test-account" className="site-header__link" to="/account">Account</NavLink>
               <NavLink className="site-header__link" to="/user-paths">User Paths</NavLink>
-              <NavLink className="site-header__link" to="/profile">Profile</NavLink>
+              <NavLink data-testid="test-profile" className="site-header__link" to="/profile">Profile</NavLink>
               <Button onClick={Logout} text={"Logout"} />
             </>
           )}
