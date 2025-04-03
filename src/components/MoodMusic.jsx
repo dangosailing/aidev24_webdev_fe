@@ -2,9 +2,6 @@ import React, { useEffect, useState } from 'react';
 import { getSpotifyAuthUrl } from '../services/spotifyAuth';
 import axios from 'axios';
 import '../styles/MoodExperience.css';
-import happyIcon from '../assets/happy.svg';
-import chillIcon from '../assets/chill.svg';
-import motivationIcon from '../assets/motivation.svg';
 const spotifyLogoUrl = "https://upload.wikimedia.org/wikipedia/commons/8/84/Spotify_icon.svg";
 
 const SpotifyIntegration = () => {
@@ -67,20 +64,20 @@ const SpotifyIntegration = () => {
                 ) : (
                     <div className="mood-experience__options">
                         <div className="mood-option">
-                            <button className="mood-experience__button" onClick={() => fetchPlaylists('😊')}>
-                                <img src={happyIcon} alt="Happy" style={{ width: '70px', height: '70px' }} />
+                            <button className="mood-experience__button large-emoji" onClick={() => fetchPlaylists('😊')}>
+                                😊
                             </button>
                             <p className="mood-label">Energetic Pop</p>
                         </div>
                         <div className="mood-option">
-                            <button className="mood-experience__button" onClick={() => fetchPlaylists('😐')}>
-                                <img src={chillIcon} alt="Neutral" style={{ width: '70px', height: '70px' }} />
+                            <button className="mood-experience__button large-emoji" onClick={() => fetchPlaylists('😐')}>
+                                😐
                             </button>
                             <p className="mood-label">Chill Vibes</p>
                         </div>
                         <div className="mood-option">
-                            <button className="mood-experience__button" onClick={() => fetchPlaylists('😩')}>
-                                <img src={motivationIcon} alt="Frustrated" style={{ width: '70px', height: '70px' }} />
+                            <button className="mood-experience__button large-emoji" onClick={() => fetchPlaylists('😩')}>
+                                😩
                             </button>
                             <p className="mood-label">Motivation Boost</p>
                         </div>
