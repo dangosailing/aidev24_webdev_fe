@@ -6,6 +6,7 @@ import MapView from "../components/MapView";
 import MoodExperience from "../components/MoodExperience";
 import SpotifyIntegration from "../components/MoodMusic";
 import { getPath } from "../services/pathApi";
+import RunCard from "../components/RunCard";
 
 const Profile = () => {
   const { user } = useContext(UserContext);
@@ -156,12 +157,15 @@ const Profile = () => {
                 />
               ))}
             </div>
-            {path.path && (
-              <RunCard
-                title={path.path.title}
-                distance={path.path.distance}
-                time={path.path.time}
-              />
+
+            {path && (
+              <div className="run-card-container">
+                <RunCard
+                  title={path.title}
+                  distance={path.distance}
+                  time={path.time}
+                />
+              </div>
             )}
           </div>
         </div>
