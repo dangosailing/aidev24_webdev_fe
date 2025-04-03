@@ -1,6 +1,5 @@
 import { useState, useEffect, useContext } from "react";
 import { useNavigate } from "react-router-dom";
-import { useForm } from "react-hook-form";
 import PathContext from "../contexts/PathContextBase";
 import {
   MapContainer,
@@ -13,22 +12,16 @@ import "leaflet/dist/leaflet.css";
 import GetUserPosition from "../components/GetUserPosition";
 import Timer from "../components/Timer";
 import MapUpdater from "../components/UpdateMapPosition";
-import Button from "../components/Button";
-import TextInput from "../components/TextInput";
 import { savePath } from "../services/pathApi";
-import UserContext from "../contexts/UserContextBase";
+import Form from "../components/Form";
+import Loading from "../components/Loading";
+import Button from "../components/Button";
+import "../styles/PathMaker.css";
 
 const PathMaker = () => {
-
-  const { setServerMessage } = useContext(UserContext);
   const [token, setToken] = useState("");
   const [loading, setLoading] = useState(false);
-
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm();
+  const [mapStyle, setMapStyle] = useState("detailed");
 
   const {
     setTitle,
@@ -39,6 +32,14 @@ const PathMaker = () => {
     setPosition,
     savedTime,
   } = useContext(PathContext);
+
+  const fields = [
+    {
+      name: "title",
+      label: "Path Title",
+      validation: { required: "A title is required" },
+    },
+  ];
 
   const navigate = useNavigate();
 
@@ -53,24 +54,34 @@ const PathMaker = () => {
 
   const onSubmit = async (data) => {
     setLoading(true);
-    setTitle(data.title);
     const pathData = {
       waypoints: route,
       title: data.title,
       distance: distance,
       time: savedTime,
     };
-    try {
-      const response = await savePath(pathData);
-      setServerMessage({ type: "success", text: response.message });
-    } catch (error){
-      setServerMessage({ type: "failed", text: error.message });
-    }
+    const response = await savePath(pathData);
+    setTitle(data.title);
     setLoading(false);
+    return response;
   };
 
   return (
     <div className="container">
+      <div className="container-map-style">
+        <Button
+          text={"Detailed"}
+          onClick={() => setMapStyle("detailed")}
+        ></Button>
+        <Button
+          text={"Simplified"}
+          onClick={() => setMapStyle("simple")}
+        ></Button>
+        <Button
+          text={"Dark Mode"}
+          onClick={() => setMapStyle("darkmode")}
+        ></Button>
+      </div>
       <div className="pathmaker-grid">
         <div className="map">
           <MapContainer
@@ -79,10 +90,24 @@ const PathMaker = () => {
             scrollWheelZoom={true}
             style={{ height: "500px", width: "100%", borderRadius: "8px" }}
           >
-            <TileLayer
-              attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-              url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-            />
+            {mapStyle === "detailed" && (
+              <TileLayer
+                attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+              />
+            )}
+            {mapStyle === "simple" && (
+              <TileLayer
+                attribution='&copy; <a href="https://carto.com/">CARTO</a> contributors'
+                url="https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png"
+              />
+            )}
+            {mapStyle === "darkmode" && (
+              <TileLayer
+                attribution='&copy; <a href="https://carto.com/">CARTO</a> contributors'
+                url="https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png"
+              />
+            )}
             <MapUpdater route={route} />
 
             {route.length > 0 && (
@@ -94,28 +119,24 @@ const PathMaker = () => {
             {route.length > 0 && <Polyline positions={route} color="blue" />}
           </MapContainer>
         </div>
-
-        <GetUserPosition
-          onPositionUpdate={setPosition}
-          onRouteUpdate={setRoute}
-        />
-
-        <Timer />
-        {route && route.length > 0 && (
-          <div>
-            <form onSubmit={handleSubmit(onSubmit)}>
-              <TextInput
-                name="title"
-                label="Give your route a title"
-                register={register}
-                registerOptions={{ required: "A title for the route is required" }}
-                error={errors.username}
-                required
+        {!loading && (
+          <div className="container-position-save">
+            <GetUserPosition
+              onPositionUpdate={setPosition}
+              onRouteUpdate={setRoute}
+            />
+            {route && route.length > 0 && (
+              <Form
+                fields={fields}
+                onSubmit={onSubmit}
+                buttonText="Save path"
               />
-              <Button text={"Save path"} type="submit" />
-            </form>
+            )}
           </div>
         )}
+        {loading && <Loading />}
+
+        <Timer />
       </div>
     </div>
   );

@@ -5,7 +5,7 @@ import TextInput from "../components/TextInput";
 import Button from "../components/Button";
 import "../styles/Form.css"
 
-const Form = ({ fields, onSubmit }) => {
+const Form = ({ fields, onSubmit, buttonText = "Submit" }) => {
   const { setServerMessage } = useContext(UserContext);
 
   const {
@@ -43,7 +43,7 @@ const Form = ({ fields, onSubmit }) => {
           />
         ))}
         <div className="centered-button">
-          <Button type="submit" text="Submit" />
+          <Button type="submit" text={buttonText} />
         </div>
       </form>
     </div>

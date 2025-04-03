@@ -1,8 +1,11 @@
 import React from 'react'
+import '../styles/NoPage.css'
 
 const NoPage = () => {
   return (
-    <div>404</div>
+    <div className='nopage-container'>
+      <h1>404</h1>
+    </div>
   )
 }
 
