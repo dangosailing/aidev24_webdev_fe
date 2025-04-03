@@ -6,11 +6,14 @@ import MapView from '../components/MapView';
 import RunCard from '../components/RunCard';
 import MoodExperience from '../components/MoodExperience';
 import SpotifyIntegration from '../components/MoodMusic';
+import { getPath } from '../services/pathApi';
 
 const Profile = () => {
 
   const { user } = useContext(UserContext);
   const [token, setToken] = useState('token')
+  const [path, setPath] = useState({});
+
   const navigate = useNavigate()
   const placeholderuser = {
     name: 'Dirk Diggler',
@@ -27,12 +30,31 @@ const Profile = () => {
   };
 
   useEffect(() => {
+    const fetchPath = async () => {
+      const sessionToken = sessionStorage.getItem("token");
+      if (!sessionToken) {
+        navigate("/login");
+      } else {
+        try {
+          const data = await getPath();
+          setPath(data.path || {});
+        } catch (error) {
+          console.error("Error fetching paths:", error);
+        }
+      }
+    };
+
+    fetchPath();
+  }, [navigate]);
+
+  useEffect(() => {
     const sessionToken = sessionStorage.getItem('token')
     if (!sessionToken) {
       navigate('/login')
 
     } else {
       setToken(sessionToken)
+
     }
   }, [navigate])
 
@@ -105,12 +127,12 @@ const Profile = () => {
                 />
               ))}
             </div>
-            <RunCard
-              date="27 mars 2025"
-              distance={5.2}
-              time={31}
-              mood="😊"
-            />
+            { path.path &&
+              <RunCard
+                distance={path.path.distance}
+                time={path.path.time}
+              />
+            }
           </div>
         </div>
       </div>
