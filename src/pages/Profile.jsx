@@ -157,7 +157,11 @@ const Profile = () => {
               ))}
             </div>
             {path.path && (
-              <RunCard distance={path.path.distance} time={path.path.time} />
+              <RunCard
+                title={path.path.title}
+                distance={path.path.distance}
+                time={path.path.time}
+              />
             )}
           </div>
         </div>
