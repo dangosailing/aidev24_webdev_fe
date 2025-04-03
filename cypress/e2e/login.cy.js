@@ -18,6 +18,6 @@ describe("Login Test", () => {
 
     cy.wait(1000);
     cy.visit("http://127.0.0.1:5173/profile");
-    cy.get("#test-header").should("contain", "Welcome, testUser!");
+    cy.get("#test-header").should("contain", "Welcome testUser!");
   });
 });
