@@ -1,7 +1,7 @@
 export const getSpotifyAuthUrl = () => {
     const clientId = import.meta.env.VITE_CLIENT_ID;
     const clientSecret = import.meta.env.VITE_CLIENT_SECRET;
-    const redirectUri = 'http://localhost:5173/profile';
+    const redirectUri = 'http://127.0.0.1:5173/profile';
     const scopes = [
     'user-read-private',
     'user-read-email',
