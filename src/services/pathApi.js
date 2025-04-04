@@ -48,3 +48,13 @@ export const updatePath = async (path_id, pathData) => {
     throw error;
   }
 };
+
+export const getPath = async () => {
+  try {
+      const response = await axiosInstance.get(`/users/get-path`)
+      return response.data.path
+  } catch (error) {
+      console.error("Error getting path", error)
+      throw error
+  }
+}

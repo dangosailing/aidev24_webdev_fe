@@ -35,17 +35,17 @@ const Header = () => {
         <nav className={`site-header__nav ${menuOpen ? "open" : ""}`}>
           {!isLoggedIn && (
             <>
-              <NavLink className="site-header__link" to="/login">Login</NavLink>
+              <NavLink data-testid="test-login" className="site-header__link" to="/login">Login</NavLink>
               <NavLink className="site-header__link" to="/register">Register</NavLink>
             </>
           )}
           {isLoggedIn && (
             <>
               <NavLink className="site-header__link" to="/create-path">Map Path</NavLink>
-              <NavLink className="site-header__link" to="/account">Account</NavLink>
+              <NavLink data-testid="test-account" className="site-header__link" to="/account">Account</NavLink>
               <NavLink className="site-header__link" to="/user-paths">User Paths</NavLink>
               <NavLink className="site-header__link" to="/profile">Profile</NavLink>
-              <Button onClick={Logout} text={"Logout"} />
+              <Button id="test-logout" onClick={Logout} text={"Logout"} />
             </>
           )}
         </nav>
