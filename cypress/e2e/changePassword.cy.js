@@ -1,5 +1,5 @@
-describe('Login Test', () => {
-    it('should login successfully and ', () => {
+describe('Change password', () => {
+    it('Should login and change password and then login again with new password', () => {
 
         cy.deleteOne({"username" : "newUser"}, {"collection" : "users"})
 
