@@ -1,5 +1,5 @@
-describe("Login Test", () => {
-  it("Create new user, log them in, check their username in the profile header and update their username so that it displays the new username in the profile header", () => {
+describe("Change Username Test", () => {
+  it("Register a new user, logs them in, verifies their username on the profile page, updates the username, and confirms the updated username is displayed on the profile page", () => {
 
     let filter = {"username": "testUser"}
 
