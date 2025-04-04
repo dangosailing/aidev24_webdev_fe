@@ -1,3 +1,5 @@
+const { configurePlugin } = require("cypress-mongodb"); // Use require instead of import
+
 const { defineConfig } = require("cypress");
 //const customViteConfig = require("./customConfig");
 
@@ -20,12 +22,16 @@ module.exports = defineConfig({
   },
 
   e2e: {
-    baseUrl: 'http://127.0.0.1:5173',
+    baseUrl: "http://127.0.0.1:5173",
     setupNodeEvents(on, config) {
+      configurePlugin(on);
       // implement node event listeners here
     },
   },
+  env: {
+    mongodb: {
+      uri: "mongodb://localhost:27017",
+      database: "runprepper",
+    },
+  },
 });
-
-
-

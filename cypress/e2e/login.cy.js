@@ -1,5 +1,7 @@
 describe("Login Test", () => {
   it("should login successfully and ", () => {
+    cy.deleteOne({ username: "testUser" }, { collection: "users" });
+
     cy.visit("http://127.0.0.1:5173/register");
 
     cy.get("input[name='username']").type("testUser");
