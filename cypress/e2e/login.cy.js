@@ -1,5 +1,5 @@
 describe("Login Test", () => {
-  it("should login successfully and ", () => {
+  it("should login successfully and read the correct username from profile header", () => {
     cy.deleteOne({ username: "testUser" }, { collection: "users" });
 
     cy.visit("http://127.0.0.1:5173/register");
