@@ -1,0 +1,33 @@
+.path-container {
+    display: grid; /* Använd grid-layout */
+    grid-template-columns: repeat(1, 1fr); /* En kolumn som standard */
+    gap: 16px; /* Mellanrum mellan korten */
+    justify-content: center; /* Centrera korten horisontellt */
+    padding: 16px; /* Lägg till padding runt hela containern */
+}
+
+.path-card {
+    background: #ffffff;
+    border: 1px solid #ddd;
+    border-radius: 12px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+    transition: transform 0.2s ease;
+    list-style-type: none;
+    padding: 20px;
+}
+
+.path-button-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    button {
+        margin: 10px;
+    }
+}
+
+/* För desktop-storlek */
+@media (min-width: 1024px) {
+    .path-container {
+        grid-template-columns: repeat(2, 1fr); /* Två kolumner på desktop */
+    }
+}

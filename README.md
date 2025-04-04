@@ -1,2 +1,2 @@
-# aidev24_webdev_fe
-Front-end repo for webdev course
+# RunPrepper  
+Documantation is in the [backen repo](https://github.com/dangosailing/aidev24_webdev_be)
