@@ -51,7 +51,7 @@ const UpdatePassword = () => {
 
   return (
     <div className="primary-form-container">
-      {!updatePasswordMode && <Button text="Change password" onClick={() => setUpdatePasswordMode(true)}/>}
+      {!updatePasswordMode && <Button id="test-change-password" text="Change password" onClick={() => setUpdatePasswordMode(true)}/>}
       {updatePasswordMode && (
         
         <>
