@@ -43,7 +43,7 @@ const Form = ({ fields, onSubmit, buttonText = "Submit" }) => {
           />
         ))}
         <div className="centered-button">
-          <Button type="submit" text={buttonText} />
+          <Button id="test-form-submit" type="submit" text={buttonText} />
         </div>
       </form>
     </div>
