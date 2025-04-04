@@ -5,7 +5,7 @@ const RunCard = ({ date = "N/A", distance = 0, time = 0, mood, title = "Untitled
   return (
     <div className="run-card container flex flex-col gap-16">
       <div className="flex justify-between items-center">
-        <h3 className="text-lg">{title}</h3>
+        <h3 id="test-runcard-title" className="text-lg">{title}</h3>
         <span className="text-lg">{mood}</span>
       </div>
       <div>
