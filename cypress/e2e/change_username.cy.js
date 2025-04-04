@@ -1,5 +1,10 @@
 describe("Login Test", () => {
   it("Create new user, log them in, check their username in the profile header and update their username so that it displays the new username in the profile header", () => {
+
+    let filter = {"username": "testUser"}
+
+    cy.deleteOne(filter, {collection: 'users'})
+
     cy.visit("http://localhost:5173/register");
 
     cy.get("input[name='username']").type("testUser");
