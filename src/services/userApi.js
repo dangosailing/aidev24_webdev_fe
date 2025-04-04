@@ -27,7 +27,7 @@ export const createUser = async (userData) => {
 
 export const updateUsername = async (userData) => { 
     try {
-        const response = await axiosInstance.post("/users/update-user", userData)
+        const response = await axiosInstance.put("/users/update-user", userData)
         return response.data
     } catch (error) {
         console.error("Error updating username:", error)
