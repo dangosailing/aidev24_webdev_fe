@@ -3,10 +3,10 @@ import { useNavigate } from "react-router-dom";
 import UserContext from "../contexts/UserContextBase";
 import "../styles/Profile.css";
 import MapView from "../components/MapView";
-import MoodExperience from "../components/MoodExperience";
 import SpotifyIntegration from "../components/MoodMusic";
 import { getPath } from "../services/pathApi";
 import RunCard from "../components/RunCard";
+import { NavLink } from "react-router-dom";
 
 const Profile = () => {
   const { user } = useContext(UserContext);
@@ -123,18 +123,9 @@ const Profile = () => {
           </div>
 
           <div>
+          <NavLink to="/user-paths">
             <div style={{ display: "flex", justifyContent: "space-between" }}>
               <h2>Runs</h2>
-              <button
-                style={{
-                  border: "none",
-                  background: "none",
-                  color: "#007bff",
-                  cursor: "pointer",
-                }}
-              >
-                View all
-              </button>
             </div>
             <div
               style={{
@@ -157,6 +148,7 @@ const Profile = () => {
                 />
               ))}
             </div>
+            </NavLink>
 
             {path && (
               <div className="run-card-container">
