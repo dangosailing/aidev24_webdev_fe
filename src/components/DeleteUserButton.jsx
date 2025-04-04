@@ -27,7 +27,7 @@ const DeleteUserButton = () => {
 
   return (
     <div className="delete-user-container">
-      <button onClick={handleDelete} className="btn btn-danger">
+      <button id="test-delete-user" onClick={handleDelete} className="btn btn-danger">
         Delete User
       </button>
       {message && <p className="delete-user-message">{message}</p>}
