@@ -5,7 +5,7 @@ describe("Change Username Test", () => {
 
     cy.deleteOne(filter, {collection: 'users'})
 
-    cy.visit("http://localhost:5173/register");
+    cy.visit("http://127.0.0.1:5173/register");
 
     cy.get("input[name='username']").type("testUser");
     cy.get("input[name='password']").type("123456");
@@ -14,7 +14,7 @@ describe("Change Username Test", () => {
 
     cy.wait(1000);
 
-    cy.visit("http://localhost:5173/login");
+    cy.visit("http://127.0.0.1:5173/login");
 
     cy.get("input[name='username']").type("testUser");
     cy.get("input[name='password']").type("123456");
