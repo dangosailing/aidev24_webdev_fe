@@ -44,6 +44,8 @@ const Header = () => {
               <NavLink className="site-header__link" to="/create-path">Map Path</NavLink>
               <NavLink data-testid="test-account" className="site-header__link" to="/account">Account</NavLink>
               <NavLink className="site-header__link" to="/user-paths">User Paths</NavLink>
+              <NavLink data-testid="test-profile" className="site-header__link" to="/profile">Profile</NavLink>
+              <Button onClick={Logout} text={"Logout"} />
               <NavLink className="site-header__link" to="/profile">Profile</NavLink>
               <Button id="test-logout" onClick={Logout} text={"Logout"} />
             </>
